@@ -19,7 +19,7 @@ qweqwdada
 # https://c.biancheng.net/view/2199.html
 
 # python 
-# https://c.biancheng.net/python/list_tuple_dict/
+# https://c.biancheng.net/view/4360.html
 
 num = 10
 print(type(num))
@@ -105,6 +105,86 @@ d = 40
 # else d
 e = a if a > b else b if b > c else c if c>d else d
 print(e)
+
+# 序列
+str="C语言中文网"
+print(str[0],"==",str[-6])
+# 隔 1 个字符取一个字符，区间是整个字符串
+print(str[::2])
+# 检查字符‘c’是否包含在字符串“c.biancheng.net”中
+print('C'in str)
+# 字符长度
+print(len(str))
+# 找出最小的字符
+print(min(str))
+# 对字符串中的元素进行排序
+print(sorted(str))
+
+# list 
+type( ["http://c.biancheng.net/python/", 1, [2,3,4] , 3.0] )
+
+#将字典转换成列表
+dict1 = {'a':100, 'b':42, 'c':9}
+list3 = list(dict1)
+print(list3)
+
+url = list("http://c.biancheng.net/shell/")
+# 使用索引访问列表中的某个元素
+print(url[3])  #使用正数索引
+print(url[-4])  #使用负数索引
+#使用切片访问列表中的一组元素
+print(url[9: 18])  #使用正数切片
+print(url[9: 18: 3])  #指定步长
+print(url[-6: -1])  #使用负数切片
+# 删除列表
+del url
+
+l = ['Python', 'C++', 'Java']
+#追加元素
+l.append('PHP')
+print(l)
+#追加列表，整个列表也被当成一个元素
+l.append(['Ruby', 'SQL'])
+print(l)
+# extend() 不会把列表或者元祖视为一个整体，而是把它们包含的元素逐个添加到列表中。
+# 追加元组，元祖被拆分成多个元素
+t = ('JavaScript', 'C#', 'Go')
+l.extend(t)
+print(l)
+#插入字符串，整个字符串被当成一个元素
+l.insert(0, "http://c.biancheng.net")
+print(l)
+# 删除
+del l[2]
+print(l)
+# pop 如果不写 index 参数，默认会删除列表中的最后一个元素
+l.pop(3)
+print(l)
+l.remove('Ruby')
+# clear
+l.clear()
+ 
+# 改
+nums = [40, 36, 89, 2, 36, 100, 7]
+#在4个位置插入元素
+nums[4: 4] = [-77, -52.5, 999]
+print(nums)
+
+# 查
+nums = [40, 36, 89, 2, 36, 100, 7, -20.5, -999, 1000, 36]
+#检索列表中的所有元素    返回index
+print( nums.index(2) )
+# 检索3~7之间的元素     返回index
+print( nums.index(100, 3, 7) )
+# 检索4之后的元素       返回index
+print( nums.index(7, 4) )
+
+print("36出现了%d次" % nums.count(36))
+
+# python 
+# https://c.biancheng.net/view/4360.html
+
+# remove()：根据元素值进行删除
 # height=float(input("输入身高： (m)")) #输入身高
 # weight=float(input("输入体重： (kg)")) #输入体重
 # bmi=weight/(height*height)       #计算BMI指数

@@ -9,7 +9,8 @@
                 "/usr/local/include/sophus",
                 "/usr/include/eigen3/",
                 "/usr/include/gtk-3.0/",
-                "/opt/ros/noetic/include"
+                "/opt/ros/noetic/include",
+                "../"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
