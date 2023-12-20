@@ -35,19 +35,19 @@ find_package(Sophus REQUIRED)
 find_package(Pangolin REQUIRED)
 
 
-find_package(catkin REQUIRED COMPONENTS cv_bridge)
-# find_package(catkin REQUIRED COMPONENTS regex)
-find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  image_transport
-  rospy
-#   cv_bridge
-#   regex
-#   opencv2
-  rospy
-  sensor_msgs
-  std_msgs
-)
+# find_package(catkin REQUIRED COMPONENTS cv_bridge)
+# # find_package(catkin REQUIRED COMPONENTS regex)
+# find_package(catkin REQUIRED COMPONENTS
+#   roscpp
+#   image_transport
+#   rospy
+# #   cv_bridge
+# #   regex
+# #   opencv2
+#   rospy
+#   sensor_msgs
+#   std_msgs
+# )
 MESSAGE(STATUS "#### catkin_  ${catkin_INCLUDE_DIRS}" )
 
 ##################### include ###########################
@@ -64,6 +64,8 @@ include_directories(
 
 set(ROSBAG_DIR ${CMAKE_SOURCE_DIR}/third_3_party/rosbag)
 set(CvBridge_DIR ${CMAKE_SOURCE_DIR}/third_3_party/CvBridgeSimple)
+MESSAGE(STATUS "#### ROSBAG_DIR  ${ROSBAG_DIR}" )
+MESSAGE(STATUS "#### CvBridge_DIR  ${CvBridge_DIR}" )
 include_directories(
     include
     ${ROSBAG_DIR}/include
@@ -75,7 +77,7 @@ include_directories(
 # Build ROS nodes
 set(LIBS
    ${EIGEN3_LIBS}
-   ${catkin_LIBRARIES}
+  #  ${catkin_LIBRARIES}
    ${Pangolin_LIBRARIES}
    ${OpenCV_LIBS}
    ${Sophus_LIBS}
@@ -145,11 +147,13 @@ MESSAGE(STATUS "####  ${CMAKE_SOURCE_DIR}" )
 
 add_executable(o1_optical_flow o1_optical_flow.cpp)
 add_executable(o2_log_test o2_log_test.cpp)
+add_executable(o2_rosbagread o2_RosBagRead.cpp)
 add_executable(o3_dcw3 o3_DCW3.cpp)
 add_executable(rosbagread RosBagRead.cpp)
 # target_link_libraries(optical_flow ${LIBS} ${catkin_LIBRARIES} RosbagStorage)
 # target_link_libraries(optical_flow ${LIBS} ${catkin_LIBRARIES} ${Boost_LIBRARIES} RosTime RosbagStorage cv_bridge Boost)
 target_link_libraries(o1_optical_flow ${LIBS})
-target_link_libraries(o2_log_test ${LIBS} ${catkin_LIBRARIES} ${Boost_LIBRARIES} RosTime RosbagStorage cv_bridge_simple)
-target_link_libraries(o3_dcw3 ${LIBS} ${catkin_LIBRARIES} ${Boost_LIBRARIES} RosTime RosbagStorage cv_bridge_simple)
-target_link_libraries(rosbagread ${LIBS} ${catkin_LIBRARIES} ${Boost_LIBRARIES} RosTime RosbagStorage cv_bridge_simple)
+target_link_libraries(o2_log_test ${LIBS}  ${Boost_LIBRARIES} RosTime RosbagStorage cv_bridge_simple)
+target_link_libraries(o2_rosbagread ${LIBS} ${Boost_LIBRARIES} RosTime RosbagStorage cv_bridge_simple)
+target_link_libraries(o3_dcw3 ${LIBS} ${Boost_LIBRARIES} RosTime RosbagStorage cv_bridge_simple)
+target_link_libraries(rosbagread ${LIBS} ${Boost_LIBRARIES} RosTime RosbagStorage cv_bridge_simple)

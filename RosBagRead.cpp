@@ -25,6 +25,21 @@
 #include <sensor_msgs/CompressedImage.h>
 #include <sensor_msgs/image_encodings.h>
 
+// #include <iostream>
+// #include <memory>
+// #include <RosbagStorage/rosbag/bag.h>
+// #include <RosbagStorage/rosbag/view.h>
+// #include <MessageType/sensor_msgs/Image.h>
+// #include <MessageType/sensor_msgs/Imu.h>
+// #include "MessageType/rostime/duration.h"
+// #include "colors.h"
+
+// #include <cv_bridge_simple.h>
+// #include <MessageType/std_msgs/Header.h>
+// #include <MessageType/sensor_msgs/Image.h>
+// #include <MessageType/sensor_msgs/CompressedImage.h>
+// #include <MessageType/sensor_msgs/image_encodings.h>
+
 using namespace std;
 using namespace cv;
 using namespace ob_slam;
