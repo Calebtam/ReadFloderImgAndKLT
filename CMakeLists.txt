@@ -88,26 +88,21 @@ add_subdirectory(third_3_party)
 
 ############################# EXCUTABLE ####################################
 
-add_executable(a a.cpp)
+add_executable(a Km/a.cpp)
 target_link_libraries(a ${LIBS})
 
-add_executable(b b.cpp)
+add_executable(b EigenTest/b.cpp)
 target_link_libraries(b ${LIBS})
 
-add_executable(c c.cpp)
+add_executable(c EigenTest/c.cpp)
 target_link_libraries(c ${LIBS})
 
-add_executable(d d.cpp)
+add_executable(d RandomSelectTest/d.cpp)
 target_link_libraries(d ${LIBS})
-
-cmake_minimum_required(VERSION 2.8)
-project(ch8)
 
 ###################################################################################
 
 MESSAGE(STATUS "####  ${CMAKE_SOURCE_DIR}" )
-
-
 
 
 ##################################################################################
@@ -143,17 +138,6 @@ MESSAGE(STATUS "####  ${CMAKE_SOURCE_DIR}" )
 # set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ./)
 ###########################################################################################
 
-
-
-add_executable(o1_optical_flow o1_optical_flow.cpp)
-add_executable(o2_log_test o2_log_test.cpp)
-add_executable(o2_rosbagread o2_RosBagRead.cpp)
-add_executable(o3_dcw3 o3_DCW3.cpp)
-add_executable(rosbagread RosBagRead.cpp)
-# target_link_libraries(optical_flow ${LIBS} ${catkin_LIBRARIES} RosbagStorage)
-# target_link_libraries(optical_flow ${LIBS} ${catkin_LIBRARIES} ${Boost_LIBRARIES} RosTime RosbagStorage cv_bridge Boost)
-target_link_libraries(o1_optical_flow ${LIBS})
-target_link_libraries(o2_log_test ${LIBS}  ${Boost_LIBRARIES} RosTime RosbagStorage cv_bridge_simple)
-target_link_libraries(o2_rosbagread ${LIBS} ${Boost_LIBRARIES} RosTime RosbagStorage cv_bridge_simple)
-target_link_libraries(o3_dcw3 ${LIBS} ${Boost_LIBRARIES} RosTime RosbagStorage cv_bridge_simple)
-target_link_libraries(rosbagread ${LIBS} ${Boost_LIBRARIES} RosTime RosbagStorage cv_bridge_simple)
+add_subdirectory(OpticalFlowTest)
+add_subdirectory(ImageQualityTest)
+add_subdirectory(RosBagReadTest)

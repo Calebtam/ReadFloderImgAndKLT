@@ -16,7 +16,7 @@
 #include <rosbag/view.h>
 #include <sensor_msgs/Image.h>
 #include <sensor_msgs/Imu.h>
-#include "include/rostime/duration.h"
+#include "rostime/duration.h"
 #include "colors.h"
 
 #include <cv_bridge_simple.h>
