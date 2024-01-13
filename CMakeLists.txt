@@ -101,6 +101,15 @@ add_executable(d RandomSelectTest/d.cpp)
 target_link_libraries(d ${LIBS})
 
 ###################################################################################
+# IMU 相关的验证
+
+add_executable(calExtrinsics Extrinsics/calExtrinsics.cpp)
+target_link_libraries(calExtrinsics ${LIBS})
+
+add_executable(CheckExtrinsics Extrinsics/Check.cpp)
+target_link_libraries(CheckExtrinsics ${LIBS})
+
+###################################################################################
 
 MESSAGE(STATUS "####  ${CMAKE_SOURCE_DIR}" )
 
