@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <launch>
+
+   <!-- <node pkg="tf" type="static_transform_publisher" name="base_link" args="0.3 0.4 0.5 0.6 0.7 0.8 0.9 base_link rslidar 20" />
+   <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="1 0 0 0 0 0 1 base_link link1 100" /> -->
+
   <!-- base_link -->
   <node name="base_link" pkg="tunable_static_tf_broadcaster" type="tunable_static_tf_broadcaster_node.py" >
     <param name="rate" value="10.0" type="double" /> <!-- tfの更新レート[Hz]-->

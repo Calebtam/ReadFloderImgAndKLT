@@ -1,0 +1,34 @@
+#python/object/new:dynamic_reconfigure.encoding.Config
+dictitems:
+  groups: #python/object/new:dynamic_reconfigure.encoding.Config
+    dictitems:
+      groups: #python/object/new:dynamic_reconfigure.encoding.Config
+        state: []
+      id: 0
+      name: Default
+      parameters: #python/object/new:dynamic_reconfigure.encoding.Config
+        state: []
+      parent: 0
+      state: true
+      param:
+        tf_yaw: 0
+        tf_pitch: 0
+        tf_roll: 0
+        tf_x: -9.9857449085087535e-02
+        tf_y: 1.6100191294004516e-03
+        tf_z: 4.3249286893142625e-04
+      type: ''
+    state: []
+  tf_pitch: 0.0
+  tf_roll: 0.0
+  tf_x: 1.0
+  tf_y: 0.0
+  tf_yaw: 0.0
+  tf_z: 1.0
+state: []
+
+# T_robot_cam:
+  # - [0.016954, -0.466968, 0.884112, 0.438583]
+  # - [-0.999855, -0.006797, 0.015583, 0.073411]
+  # - [-0.001267, -0.884248, -0.467016, 0.2662]
+  # - [0, 0, 0, 1]
