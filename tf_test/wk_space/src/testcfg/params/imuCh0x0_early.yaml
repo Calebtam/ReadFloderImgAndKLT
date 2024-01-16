@@ -11,12 +11,15 @@ dictitems:
       parent: 0
       state: true
       param:
-        tf_pitch: -0.0054
-        tf_roll: -3.1338358
-        tf_yaw: -3.1205763
-        tf_x: -5.2769634243991703e-03
-        tf_y: -3.6288241036312177e-04
-        tf_z: -8.3947850718082695e-03
+      # .eulerAngles(0,1,2) no
+      # .inverse().eulerAngles(0,1,2); no
+      # .eulerAngles(2,1,0); yes
+        tf_pitch: -1.5071725278 
+        tf_roll: -0.0497738017
+        tf_yaw: 1.6551999052 
+        tf_x: 5.4409151811733655e-02
+        tf_y: -6.0586000592539090e-03
+        tf_z: -1.0242074294945365e-02
       type: ''
     state: []
   tf_pitch: 0.0

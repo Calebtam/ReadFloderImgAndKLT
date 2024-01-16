@@ -35,7 +35,7 @@
     <param name="rate" value="10.0" type="double" /> <!-- tfの更新レート[Hz]-->
     <param name="header_frame" value="cam0" type="string" /> <!-- tfのヘッダフレームID -->
     <param name="child_frame" value="imu" type="string" /> <!-- tfの子フレームID-->
-    <param name="yaml" value="$(find testcfg)/params/imu.yaml" type="string" /> <!-- 初期化用yaml -->
+    <param name="yaml" value="$(find testcfg)/params/imuCh0x0_early.yaml" type="string" /> <!-- 初期化用yaml -->
   </node>
 
   <!-- 設定用rqt_reconfigure -->

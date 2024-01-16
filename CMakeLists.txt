@@ -82,6 +82,7 @@ set(LIBS
    ${OpenCV_LIBS}
    ${Sophus_LIBS}
    ${Boost_LIBRARIES}
+   fmt
 )
 
 add_subdirectory(third_3_party)
