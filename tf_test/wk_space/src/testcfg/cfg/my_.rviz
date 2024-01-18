@@ -181,9 +181,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6703981757164001
+      Pitch: 0.4447973966598511
       Target Frame: <Fixed Frame>
-      Yaw: 2.038618803024292
+      Yaw: 1.0486197471618652
     Saved:
       - Class: rviz/Orbit
         Distance: 1.2172572612762451
@@ -205,6 +205,26 @@ Visualization Manager:
         Pitch: 0.6703981757164001
         Target Frame: <Fixed Frame>
         Yaw: 2.038618803024292
+      - Class: rviz/Orbit
+        Distance: 1.2172572612762451
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Field of View: 0.7853981852531433
+        Focal Point:
+          X: 0.2329675555229187
+          Y: 0.005274474620819092
+          Z: 0.13061244785785675
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: Orbit
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.4447973966598511
+        Target Frame: <Fixed Frame>
+        Yaw: 1.0486197471618652
 Window Geometry:
   Camera:
     collapsed: false

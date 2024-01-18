@@ -32,6 +32,7 @@ IOFormat OctaveFmt(StreamPrecision, 0, ", ", ";\n", "", "", "[", "]");
 IOFormat HeavyFmt(FullPrecision, 0, ", ", ";\n", "[", "]", "[", "]");
 
 IOFormat MyFmt(FullPrecision, 0, ", " , "\n", " - [" , "]");
+IOFormat ImuFmt(FullPrecision, 0, ", " , "\n", "[" , "]");
 
 #define MATRIX_SIZE 50
  
@@ -45,6 +46,41 @@ int main(int argc, char **argv){
     Matrix<float,3,1> vd_3d;//lie
     
     Matrix3d matrix_33 = Matrix3d::Zero();
+
+    double ARC2DEC = 57.29578;
+    
+    // 三轴90度
+    Vector3d v_3d_1(90/57.29578, 90/57.29578, 90/57.29578);
+    // Vector3d v_3d_1(1, 1, 1);
+    Matrix3d ch030_acc,icm40608_acc, ch030_gyr, icm40608_gyr;
+    ch030_acc << 0.99997057974219561,     0.00080871659439779315, -0.000043439969991280537, 
+                0.0023539588579533956,   0.99715894021963458,    0.0031377515760083641,
+                0.00077579781873370361, -0.0033565136577209374,  0.99942758163831091;
+    // 超核  陀螺轴偏 尺度偏移
+    ch030_gyr <<  1.0002101399944603,                          0.,                     0., 
+                -0.00005578440739421717,       1.0021655266290543,                     0.,
+                -0.00057229960194921895,       0.0009093160800406,    0.99806393571890961;
+
+    icm40608_acc << 0.99405432160386986   ,  -0.017398903146890243 , -0.011654335270268240  , 
+                    -0.0052559878292822351 ,   1.0088449057919222   , -0.0021251401954012795,
+                    -0.0054742119267912094 ,  0.00056708000800976687,  1.0513641049364815;
+    // 40608  陀螺轴偏 尺度偏移
+    icm40608_gyr << 1.0598204797595738   ,                      0.,                       0., 
+                    -0.060907440894186031 ,  0.97156130224344672   ,                       0., 
+                    -0.0069146349091346124, -0.033885065278017192  ,  1.0290295071221283   ;
+    // std::cout << ch030_acc.block<1,3>(0,0).transpose().cwiseProduct(v_3d_1).transpose() * ARC2DEC << std::endl;
+    // std::cout << ch030_acc.block<1,3>(1,0).transpose().cwiseProduct(v_3d_1).transpose() * ARC2DEC << std::endl;
+    // std::cout << ch030_acc.block<1,3>(2,0).transpose().cwiseProduct(v_3d_1).transpose() * ARC2DEC << std::endl;
+    std::cout << ch030_gyr.inverse() * v_3d_1 * ARC2DEC << std::endl;
+    // 原始值       90          90              90
+    // 超核轴偏值    89.9811     89.8105         90.1444
+    // std::cout << icm40608_acc.block<1,3>(0,0).transpose().cwiseProduct(v_3d_1).transpose() * ARC2DEC << std::endl;
+    // std::cout << icm40608_acc.block<1,3>(1,0).transpose().cwiseProduct(v_3d_1).transpose() * ARC2DEC << std::endl;
+    // std::cout << icm40608_acc.block<1,3>(2,0).transpose().cwiseProduct(v_3d_1).transpose() * ARC2DEC << std::endl;
+    std::cout << icm40608_gyr.inverse() * v_3d_1 * ARC2DEC << std::endl;
+    // 原始值        90          90              90
+    // 40608轴偏值   84.92       97.9581         91.2574
+
     Matrix<double,Dynamic,Dynamic> matrix_dynamic;
     MatrixXd matrix_x;
 
@@ -69,7 +105,7 @@ int main(int argc, char **argv){
                 ,-0.00317308, 0.999814, -0.0190296, -0.000419059
                 ,-0.0349135, 0.0189074, 0.999211, -0.00407236
                 ,0.0, 0.0, 0.0, 1.0;
-    std::cout << " ------------------------------------------------------------------------- " << std::endl;
+    std::cout << " --------------------------------------------------------------------------------- " << std::endl;
     Matrix4d T_c1_i0 = T_c_c1.inverse() * T_c_i0;
     std::cout << " ======== icm40608 原先 ========" << std::endl;
     std::cout << std::fixed << std::setprecision(10) << "T_c0_i:\n" << T_c1_i0.format(MyFmt) << std::endl;
@@ -78,9 +114,9 @@ int main(int argc, char **argv){
     Vector3d p_i0_robot = T_i0_robot.block<3,1>(0,3);
     Vector3d pi0_robot_rtk = T_i0_robot.block<3,3>(0,0) * p_robot_rtk;  // 向量转换坐标系  
     Vector3d p_i0_rtk =  p_i0_robot+pi0_robot_rtk;              // i_r + r_rtk  = i_rtk
-    std::cout << std::fixed << std::setprecision(10) << "p_i0_rtk:\n" << p_i0_rtk.transpose().format(MyFmt) << std::endl;
+    std::cout << std::fixed << std::setprecision(10) << "p_i0_rtk:\n" << p_i0_rtk.transpose().format(ImuFmt) << std::endl;
 
-    std::cout << " ------------------------------- CG05 ------------------------------------ " << std::endl;
+    std::cout << " ----------------------------------- CG05 ---------------------------------------- " << std::endl;
     // CG05
     T_c1_c <<    9.9929362019459733e-01, 3.6563663679893665e-02, -8.6809640409060036e-03, -9.9857449085087535e-02
                 ,-3.6562751166395319e-02, 9.9933132424168847e-01, 2.6384938396979533e-04, 1.6100191294004516e-03
@@ -90,7 +126,7 @@ int main(int argc, char **argv){
                 ,0.036563663679894,  0.999331324241689,  0.000053736922019,  0.002042188394805
                 ,-0.008680964040906,  0.000263849383970,  0.999962284912198, -0.001299760284705
                 ,-0.000000000000000, -0.000000000000000, -0.000000000000000,  1.000000000000000;
-    std::cout << " ------------------------------------------------------------------------- " << std::endl;
+    std::cout << " --------------------------------------------------------------------------------- " << std::endl;
     // CG05 icm
     T_c_i1 << -9.9976458775839849e-01, -2.1056059618633140e-02, -5.2355914294924411e-03, -5.2769634243991703e-03
               ,-2.1014508286477940e-02, 9.9974820631745753e-01, -7.8685708043991706e-03, -3.6288241036312177e-04
@@ -105,7 +141,7 @@ int main(int argc, char **argv){
     Vector3d p_i1_robot = T_i1_robot.block<3,1>(0,3);
     Vector3d pi1_robot_rtk = T_i1_robot.block<3,3>(0,0) * p_robot_rtk;  // 向量转换坐标系  
     Vector3d p_i1_rtk =  p_i1_robot+pi1_robot_rtk;              // i_r + r_rtk  = i_rtk
-    std::cout << std::fixed << std::setprecision(10) << "p_i0_rtk:\n" << p_i1_rtk.transpose().format(MyFmt) << std::endl;
+    std::cout << std::fixed << std::setprecision(10) << "p_i0_rtk:\n" << p_i1_rtk.transpose().format(ImuFmt) << std::endl;
 
     Eigen::Vector3d R_c_i1_eulerAngle=T_c_i1.block<3,3>(0,0).eulerAngles(2,1,0);
     Eigen::Quaterniond R_c_i1_quaternion(T_c_i1.block<3,3>(0,0));
@@ -114,7 +150,7 @@ int main(int argc, char **argv){
     //输出四元数
     std::cout << std::fixed << std::setprecision(10) << "R_c_i1_quaternion: " << R_c_i1_quaternion.coeffs().transpose() << std::endl;   // coeffs的顺序是(x,y,z,w),w为实部，前三者为虚部
 
-    std::cout << " ------------------------------------------------------------------------- " << std::endl;
+    std::cout << " --------------------------------------------------------------------------------- " << std::endl;
     // CG05 ch0x0 early
     T_c_i2 << -5.3600845749410819e-03, -9.9939196268917763e-01, 3.4452494911438980e-02, 5.4409151811733655e-02
               ,6.3354543429109123e-02, -3.4723163635731469e-02, -9.9738683755803370e-01, -6.0586000592539090e-03
@@ -129,14 +165,14 @@ int main(int argc, char **argv){
     Vector3d p_i2_robot = T_i2_robot.block<3,1>(0,3);
     Vector3d pi2_robot_rtk = T_i2_robot.block<3,3>(0,0) * p_robot_rtk;  // 向量转换坐标系  
     Vector3d p_i2_rtk =  p_i2_robot+pi2_robot_rtk;              // i_r + r_rtk  = i_rtk
-    std::cout << std::fixed << std::setprecision(10) << "p_i2_rtk:\n" << p_i2_rtk.transpose().format(MyFmt) << std::endl;
+    std::cout << std::fixed << std::setprecision(10) << "p_i2_rtk:\n" << p_i2_rtk.transpose().format(ImuFmt) << std::endl;
 
     Eigen::Vector3d R_c_i2_eulerAngle=T_c_i2.block<3,3>(0,0).eulerAngles(2,1,0);
     Eigen::Quaterniond R_c_i2_quaternion(T_c_i2.block<3,3>(0,0));
     std::cout << std::endl << std::fixed << std::setprecision(10) << "R_c_i2_y-p-r: " << R_c_i2_eulerAngle.transpose() << std::endl;
     std::cout << std::fixed << std::setprecision(10) << "R_c_i2_quaternion: " << R_c_i2_quaternion.coeffs().transpose() << std::endl;   // coeffs的顺序是(x,y,z,w),w为实部，前三者为虚部
 
-    std::cout << " ------------------------------------------------------------------------- " << std::endl;
+    std::cout << " --------------------------------------------------------------------------------- " << std::endl;
     // ch0x0 now
     T_c_i3 <<    -9.4993443002331368e-03, -9.9994395665702529e-01, 4.6739707914257734e-03, 4.5845156257491068e-02
                 ,-9.9960941692875183e-01, 9.3731034638246946e-03, -2.6327903805993196e-02, 1.3306726298177101e-02
@@ -151,7 +187,7 @@ int main(int argc, char **argv){
     Vector3d p_i3_robot = T_i3_robot.block<3,1>(0,3);
     Vector3d pi3_robot_rtk = T_i3_robot.block<3,3>(0,0) * p_robot_rtk;  // 向量转换坐标系  
     Vector3d p_i3_rtk =  p_i3_robot+pi3_robot_rtk;              // i_r + r_rtk  = i_rtk
-    std::cout << std::fixed << std::setprecision(10) << "p_i3_rtk:\n" << p_i3_rtk.transpose().format(MyFmt) << std::endl;
+    std::cout << std::fixed << std::setprecision(10) << "p_i3_rtk:\n" << p_i3_rtk.transpose().format(ImuFmt) << std::endl;
 
     Eigen::Vector3d R_c_i3_eulerAngle=T_c_i3.block<3,3>(0,0).eulerAngles(2,1,0);
     Eigen::Quaterniond R_c_i3_quaternion(T_c_i3.block<3,3>(0,0));
