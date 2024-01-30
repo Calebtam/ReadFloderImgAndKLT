@@ -92,12 +92,6 @@ add_subdirectory(third_3_party)
 add_executable(a Km/a.cpp)
 target_link_libraries(a ${LIBS})
 
-add_executable(b EigenTest/b.cpp)
-target_link_libraries(b ${LIBS})
-
-add_executable(c EigenTest/c.cpp)
-target_link_libraries(c ${LIBS})
-
 add_executable(d RandomSelectTest/d.cpp)
 target_link_libraries(d ${LIBS})
 
@@ -151,3 +145,5 @@ MESSAGE(STATUS "####  ${CMAKE_SOURCE_DIR}" )
 add_subdirectory(OpticalFlowTest)
 add_subdirectory(ImageQualityTest)
 add_subdirectory(RosBagReadTest)
+add_subdirectory(Sophus)
+add_subdirectory(EigenTest)
