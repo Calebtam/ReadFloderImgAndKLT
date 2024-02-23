@@ -19,7 +19,7 @@ int main()
   v << 1, 2, 3;
   cout << "4. m * v =" << endl << m * v << endl;
 
-
+  // 求期望
   MatrixXd n = MatrixXd::Zero(6,6);
   VectorXd v_idx(6);
   VectorXd v_ones = VectorXd::Ones(6);

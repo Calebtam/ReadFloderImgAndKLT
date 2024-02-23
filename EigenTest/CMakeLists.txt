@@ -13,3 +13,6 @@ target_link_libraries(linearDecomposition ${LIBS})
 
 add_executable(sliceAndIndex sliceAndIndex.cpp)
 target_link_libraries(sliceAndIndex ${LIBS})
+
+add_executable(mm MM.cpp)
+target_link_libraries(mm ${LIBS})
