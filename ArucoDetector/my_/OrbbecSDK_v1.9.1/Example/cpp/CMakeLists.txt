@@ -1,0 +1,34 @@
+cmake_minimum_required(VERSION 3.1.15)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+
+# add_subdirectory(Sample-DepthWorkMode)
+
+# add_subdirectory(Sample-FirmwareUpgrade)
+# add_subdirectory(Sample-HelloOrbbec)
+# add_subdirectory(Sample-HotPlugin)
+# add_subdirectory(Sample-ImuReader)
+# add_subdirectory(Sample-SensorControl)
+
+# opencv required
+if(${OpenCV_FOUND})
+    add_subdirectory(Sample-ColorViewer)
+    # add_subdirectory(Sample-DepthViewer)
+    # add_subdirectory(Sample-InfraredViewer)
+    # add_subdirectory(Sample-DoubleInfraredViewer)
+    # add_subdirectory(Sample-SyncAlignViewer)
+    # add_subdirectory(Sample-PointCloud)
+    # add_subdirectory(Sample-MultiDevice)
+    # add_subdirectory(Sample-MultiDeviceSyncOld)
+    # add_subdirectory(Sample-MultiDeviceSync)
+    # add_subdirectory(Sample-MultiStream)
+    # add_subdirectory(Sample-NetDevice)
+    # add_subdirectory(Sample-SaveToDisk)
+    # add_subdirectory(Sample-DepthPrecisionViewer)
+    # add_subdirectory(Sample-CommonUsages)
+# if(NOT APPLE)
+#     add_subdirectory(Sample-Recorder)
+#     add_subdirectory(Sample-Playback)
+# endif()
+endif(${OpenCV_FOUND})
+

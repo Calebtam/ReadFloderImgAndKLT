@@ -1,0 +1,13 @@
+%YAML:1.0 # need to specify the file type at the top!
+
+verbosity: "DEBUG" # ALL, DEBUG, INFO, WARNING, ERROR, SILENT
+relative_config_imu: "icm40608_imu_chain.yaml"
+#relative_config_imucam: "ov9782_imucam_chain_camera1.yaml"
+#relative_config_imucam: "ov9782_imucam_chain_camera2.yaml"
+relative_config_imucam: "ov9782_imucam_chain_camera3_sdk.yaml"
+
+T_robot_cam:
+  - [0.016954, -0.466968, 0.884112, 0.438583]
+  - [-0.999855, -0.006797, 0.015583, 0.073411]
+  - [-0.001267, -0.884248, -0.467016, 0.2662]
+  - [0, 0, 0, 1]

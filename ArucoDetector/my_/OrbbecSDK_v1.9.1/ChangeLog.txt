@@ -1,0 +1,1259 @@
+版本号： v1.9.1
+发布日期: 20231219
+功能变更：
+    1. 新增全局时间戳功能。
+    2. 新增深度滤波功能。
+    3. 新增坐标转换功能,新增单帧D2C接口。
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.22
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega: V1.1.7
+        (7) Gemini2: V1.4.76
+        (8) Gemini2L: V1.4.32
+        (9) Gemini2XL: V1.2.5
+        (10)FemtoBolt: V1.0.6
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+        (16) Astra Mini S Pro
+
+版本号： v1.9.0
+发布日期: 20231121
+功能变更：
+    1. 修复无法重复getDevice获取设备问题。
+    2. 修复录制Y8格式异常崩溃问题。
+    3. 增加Pipeline IMU聚合功能。
+    4. 增加MJPG转NV12格式功能。
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.22
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega: V1.1.7
+        (7) Gemini2: V1.4.76
+        (8) Gemini2L: V1.4.32
+        (9) Gemini2XL: V1.2.5
+        (10)FemtoBolt: V1.0.6
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+        (16) Astra Mini S Pro
+
+版本号： v1.8.3
+发布日期: 20231124
+功能变更：
+    1. 修复FemtoMega与FemtoBolt设备异常退出时未关流导致的异常情况。
+    2. 修复Ubuntu/Arm平台上因sample变量名称与系统函数名称重名导致的崩溃问题。
+    3. 修复带渲染的sample退出崩溃问题。
+    
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.22
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega: V1.1.7
+        (7) Gemini2: V1.4.76
+        (8) Gemini2L: V1.4.32
+        (9) Gemini2XL: V1.2.5
+        (10)FemtoBolt: V1.0.6
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+        (16) Astra Mini S Pro
+
+版本号： v1.8.2
+发布日期: 20230928
+功能变更：
+    1. 修复OpenNI设备内参获取异常问题。
+    2. 修复Arm32平台编译sample失败问题。
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.22
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega: V1.1.7
+        (7) Gemini2: V1.4.76
+        (8) Gemini2L: V1.4.32
+        (9) Gemini2XL: V1.2.5
+        (10)FemtoBolt: V1.0.6
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+        (16) Astra Mini S Pro
+
+版本号： v1.8.1
+发布日期: 20230928
+功能变更：
+    1. 修复 v1.8.0 版本测试问题。
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.22
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega: V1.1.7
+        (7) Gemini2: V1.4.76
+        (8) Gemini2L: V1.4.32
+        (9) Gemini2XL: V1.2.5
+        (10)FemtoBolt: V1.0.6
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+        (16) Astra Mini S Pro
+
+版本号： v1.8.0
+发布日期: 20230928
+功能变更：
+    1. 修复深度转点云功能超过10米的数据被截断的问题。
+    2. 支持FemtoBolt模组。
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.22
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega: V1.1.7
+        (7) Gemini2: V1.4.76
+        (8) Gemini2L: V1.4.32
+        (9) Gemini2XL: V1.2.5
+        (10)FemtoBolt: V1.0.6
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+        (16) Astra Mini S Pro
+
+版本号： v1.7.5
+发布日期: 20230922
+功能变更：
+    1. 修复多机授时接口不立即授时问题
+    2. 多机同步sample增加触发模式相关功能
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.22
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega: V1.1.7
+        (7) Gemini2: V1.4.76
+        (8) Gemini2L: V1.4.32
+        (9) Gemini2XL: V1.2.5
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+        (16) Astra Mini S Pro
+
+版本号： v1.7.4
+发布日期: 20230912
+功能变更：
+    1. 增加depth处理block，修复Gemini 2 XL 1280x800 depth问题；
+    2. 增加常用参数设置sample (CommonUsages)；
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.22
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega: V1.1.7
+        (7) Gemini2: V1.4.76
+        (8) Gemini2L: V1.4.32
+        (9) Gemini2XL: V1.2.5
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+        (16) Astra Mini S Pro
+
+
+版本号： v1.7.3
+发布日期: 20230911
+功能变更：
+    1. 恢复网络TearDown的超时时间为2s。
+    2. 对外API开放baseline参数结构体
+    3. 增加深度RVL过滤机制，规避不完整帧导致解码库崩溃。
+    4. 1.7.2版本问题修复。
+    5. 规避deeya获取设备时间戳崩溃问题。
+    6. 修复Astra2深度分辨率无RLE格式问题。
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.22
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega: V1.1.7
+        (7) Gemini2: V1.4.76
+        (8) Gemini2L: V1.4.32
+        (9) Gemini2XL: V1.2.5
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+        (16) Astra Mini S Pro
+
+版本号： v1.7.2
+发布日期: 20230905
+功能变更：
+    1. Astra2 多机同步时延配置功能需求调整
+    2. 1.7.1版本问题修复
+    3. License新增配置项控制Orbbec Gemini 2 系列双路IR功能是否开放
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.22
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega: V1.1.7
+        (7) Gemini2: V1.4.76
+        (8) Gemini2L: V1.4.32
+        (9) Gemini2XL: V1.2.3
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+        (16) Astra Mini S Pro
+
+版本号： v1.7.1
+发布日期: 20230825
+功能变更：
+    1. 合并FemtoMega分支代码，支持 FemtoMega V1.2.6 版本
+    2. 新开发多机同步接口及示例
+    3. 深度单位默认改为1mm, 示例代码增加深度单位转换演示
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.22
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega: V1.1.7
+        (7) Gemini2: V1.4.76
+        (8) Gemini2L: V1.4.32
+        (9) Gemini2XL: V1.2.3
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+        (16) Astra Mini S Pro
+
+
+版本号： v1.7.0
+发布日期: 20230825
+功能变更：
+    1. 合并Gemini2XL分支代码，增加Gemini2XL设置支持。
+    2. 修改借用MJPG通道的深度压缩格式替换为可配置形式。
+    3. 增加单独Gemini2XL的RVL深度压缩格式的解压缩block。
+    4. 新增RVL解压库,包括平台windwosx86/x64、linxu、arm32/64。
+    5. 修改D2C匹配等待帧时间最大值为500ms。
+    6. 修改libuvc的buffer数量，当开流为10fps一下MJPG格式时其数量将为20。
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega:V1.1.5
+        (7) Gemini2:V1.4.60
+        (8) Gemini2L:V1.4.32
+        (9) Gemini2XL:V1.2.3
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+
+
+版本号： v1.6.3
+发布日期: 20230801
+功能变更：
+    1. 修复OpenNI设备点云转换后距离异常问题。
+    2. 修复切换模式导致的偶发获取分辨率列表异常问题。
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega:V1.1.5
+        (7) Gemini2:V1.4.60
+        (8) Gemini2L:1.4.32
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+
+
+版本号： v1.6.2
+发布日期: 20230722
+功能变更：
+    1. Dabai Pro部分分辨率深度点云缺失问题修复.
+    2. 多设备热插拔问题修复。
+    3. 其他问题修复及优化。
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega:V1.1.5
+        (7) Gemini2:V1.4.60
+        (8) Gemini2L:1.4.32
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+
+
+版本号： v1.6.1
+发布日期: 20230630
+功能变更：
+    1. OpenNI设备镜像状态一致性。
+    2. 其他问题修复及优化。
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega:V1.1.5
+        (7) Gemini2:V1.4.60
+        (8) Gemini2L:1.4.32
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+
+
+
+版本号： v1.6.0
+发布日期: 20230531
+功能变更：
+    1. 增加点云坐标系配置的接口，增加左手坐标系和 右手坐标系。
+    2. D2C 模块从Pipiline中抽出来、postfilter。
+    3. Imu Bug修复，v1.5.7版本 Imu 开关流，会crash。[Bug 修复]
+    4. 日志代码重构，替换log库，关键流程增增加log，增加log回调和log文件循环覆盖功能。
+    5. D2C后不缩放深度获取内参错误问题修复
+    6. 网络功能，支持条件编译。
+    7. SDK内部内存池优化
+    8. linux sample rpath 配置
+    9. 增加支持 Mac平台。
+    10. Dabai DW 、Gemini E Lite、Dabai Pro 这类没有RGB的模组，Depth点云异常[Bug 修复]。
+    11. 增加Astra2，Gemini2L设备支持。
+    12. Gemini2增加Mask滤波，Gemini2L增加Margin滤波。
+    13. 固件增加开发者模式，开发者模式，SDK跑在jetson nano上。
+    14. 网络支持 设备发现功能，但不支持修改IP。
+    15. 增加正常工作模式和开发者工作模式，切换接口。
+    16. 恢复出厂设置和参数，只写，参数值必须为true，重启设备后生效 。
+    17. 增加系统进入 恢复模式的接口，设备系统进行升级。
+    19. 其他问题修复及优化。
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.8.20
+        (6) FemtoMega:V1.1.5
+        (7) Gemini2:V1.4.60
+        (8) Gemini2L:1.4.32
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+
+版本号： v1.5.8
+发布日期: 20220227
+功能变更：
+    1. FemtoMega 通过 UVC SRC 获取32bit时间戳
+    2. D2C后不缩放深度获取内参错误问题修复
+    3. 示例注释翻译成英文
+    4. 其他问题修复和代码优化
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.2.05
+        (6) FemtoMega:V1.1.5
+        (7) Gemini2:V1.4.60
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+
+版本号： v1.5.7
+发布日期: 20220227
+功能变更：
+	1. 修复Gemini2 陀螺仪量程 设置后，获取不正确问题。
+	2. 重构多机同步的代码。
+	3. SDK流状态监控 异常处理，加入设备同步模式判断，如果是从设备，开流没取到流，不重新开流。
+	4. Mega 增加网络取流Sample。
+	5. Mega镜像后，D2C问题修复及 IMU丢帧问题修复。
+	6. 修复Mega 网络设备掉线 监控失败问题。
+	7. 修复femto 系列imu 微秒单位时间戳获取错误问题。
+	8. Gemini2 优化各个depth模式默认分辨率逻辑，不需要OrbbecSDKConfig_v1.0.xml 也能支持。
+	9. Mega 增加设置风扇最大的接口，给工程软件使用。
+	10. 新增多机同步sample。
+	11. 优化热插拔的sample，能够输出 打印depth 单位。
+	12. 修复DCW和GeminiE 配置文件IR默认分辨率。
+	13. 修复Astra+设备第一次使用VGA分辨率 硬件D2C不生效问题。
+	14. 其他问题修复。
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.2.05
+        (6) FemtoMega:V1.1.5
+        (7) Gemini2:V1.4.60
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+
+版本号： v1.5.4
+发布日期: 20230202
+功能变更：
+    1. 更新软件滤波库为1.1.4
+    2. 修改Pipeline switchConfig接口调用异常问题
+    3. FemtoMega 网络模式增加MJPG格式
+    4. Gemini2支持多机同步和任意帧率
+    5. Gemini2支持REL/Y8/Y14 镜像、翻转、旋转
+    6. 其他问题修复
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.2.05
+        (6) FemtoMega:V1.1.5
+        (7) Gemini2:V1.4.49
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+
+版本号： v1.5.2
+发布日期: 20230112
+功能变更：
+    1. 合并2.0分支SDK核心层代码
+    2. 合并Gemini2分支代码，增加Gemini2设置支持
+    3. 其他问题修复
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.2.05
+        (6) FemtoMega:V1.1.5
+        (7) Gemini2:V1.4.49
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+
+版本号： v1.5.1
+发布日期: 20230103
+功能变更：
+    1. 合并2.0分支SDK核心层代码
+    2. 录制回放功能支持H264,H265,Y8格式
+    3. 其他问题修复
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.2.05
+        (6) FemtoMega:V1.1.5
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+
+版本号： v1.5.0
+发布日期: 20221213
+功能变更：
+    1. FemtoMega,A1 Pro,Gemini E,Gemini E Lite
+    2. 增加压缩解压Filter,高级模式录制默认启动压缩功能
+    3. 增加黑名单过滤功能,通过配置文件实现Profile过滤
+    4. 修改RGB与BGRA使用windows系统API进行解码
+    5. 其他问题修复
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.1.8
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.2.05
+        (6) FemtoMega:V1.1.5
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+        (13) A1 Pro
+        (14) Gemini E
+        (15) Gemini E Lite
+
+版本号： v1.4.4
+发布日期: 20221115
+功能变更：
+    1. 修复Femto系列vendor usb异常时不切换xu方案的问题
+    2. 解决python wrapper因GIL导致死锁问题
+    3. API注释翻译修正, 移除非对外的property定义
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.0.6
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.2.05
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+
+版本号： v1.4.3
+发布日期: 20221101
+功能变更：
+    1. 修复切换点云分辨率偶发崩溃问题。
+    2. 修复高级模式下使用switchConfig接口导致的开流后无数据回调问题。
+    3. 修复RGBD点云导出异常的问题。
+    4. 修复配置文件默认配置异常问题。
+    5. 修复FormatConverter Filter转换崩溃问题。
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.0.6
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.2.05
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+
+版本号： v1.4.2
+发布日期: 20221026
+功能变更：
+    1. 修复切换分辨率偶发崩溃问题。
+    2. 配置文件增加Pipeline数据流开关控制。
+    3. Astra Mini系列Color Sensor增加RGB格式。
+    4. 1.4.1版本问题修复
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.0.6
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.2.05
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+
+版本号： v1.4.1
+发布日期: 20220930
+功能变更：
+    1. 录制回放功能支持除Color h264,h265外的所有格式。
+    2. 点云Filter支持Color h264,h265外的所有格式。
+    3. 1.4.0版本问题修复
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.9
+        (3) Femto-W：V1.0.6
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.2.05
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+
+版本号： v1.4.0
+发布日期: 20220913
+功能变更：
+    1. 平台抽象层/基础功能层 代码优化重构
+    2. 新增适配OpenNI协议设备
+    3. D2C算法库更新，新增D2C后处理深度图是否缩放控制
+    4. Pipeline switchConfig 接口优化（某路流配置变更不重启其他流）
+    5. D2C后有效区域支持ToF产品
+    6. 性能优化
+    7. 其他问题修复
+
+支持硬件及固件版本：
+    1. 原生：
+        (1) Astra+、Astra+s：V1.0.20
+        (2) Femto：V1.6.8
+        (3) Femto-W：V1.0.6
+        (4) Femto-Live：V1.1.1
+        (5) Astra2：V2.2.05
+    2. OpenNI:
+        (1) Gemini
+        (2) Dabai DW
+        (3) Dabai DCW
+        (4) Dabai DC1
+        (5) Astra Mini
+        (6) AstraMini S
+        (7) Astra Mini Pro
+        (8) Dabai
+        (9) Dabai Pro
+        (10) Deeya
+        (11) Astra Plus
+        (12) Dabai D1
+
+版本号： v1.3.1
+发布日期: 20220615
+功能变更：
+    1. 修改硬件D2C后内参根据分辨率进行缩放
+    2. 修改V1.3.0版本遗留的Bug
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.20
+    2.Femto：V1.6.8
+    3.Femto-W：V1.0.6
+    4.Femto-Live：V1.1.1
+    5.Astra2：V2.2.05
+
+===================================================
+
+版本号： v1.3.0
+发布日期: 20220602
+功能变更：
+    1. Femto 深度0.1mm精度支持
+	2. 畸变参数初始值问题修复
+	3. Astra+ 1.0.21新固件适配
+	4. 开流失败重启功能修改，默认关闭功能，通过配置文件控制
+	5. 设备上下线枚举匹配功能优化
+	6. 优化高分辨率下的画面延迟，通过配置文件控制缓存帧队列数量（Filter缓存帧队列，Pipeline缓存帧队列）
+	7. RGB888性能优化（补充对标平台配置，达到1080P@30fps）
+	8. CICD 打包SDK完善
+	9. 指示灯控制覆盖Femto，Femto W，Femto Live，同步OrbbecViewer控件显示
+	10. V1.2 遗留Bug修复
+	11. 新增获取连接类型接口（USB2.0、USB3.0、网络、mipi等），原有的接口保留，加注释废弃。
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.20
+    2.Femto：V1.6.8
+    3.Femto-W：V1.0.6
+    4.Femto-Live：V1.1.1
+    5.Astra2：V2.2.05
+
+===================================================
+版本号： v1.2.8
+发布日期: 20220407
+功能变更：
+    1. 已知bug修复
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.20
+    2.Femto：V1.6.6
+    3.Femto-W：V1.0.6
+    4.Femto-Live：V1.1.1
+    5.Astra2：V2.2.05
+
+===================================================
+版本号： v1.2.7
+发布日期: 20220330
+功能变更：
+    1. EventBus机制引入
+    2. 其他代码优化和已知bug修复
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.20
+    2.Femto：V1.6.6
+    3.Femto-W：V1.0.6
+    4.Femto-Live：V1.1.1
+    5.Astra2：V2.2.05
+
+===================================================
+版本号： v1.2.6
+发布日期: 20220322
+功能变更：
+    1. 接口及控制命令梳理优化
+    2. 控制命令列表头文件区分内外版本
+    3. License机制完善
+    4. 增加Linux平台usb rules文件及安装脚本
+    5. 录制回放功能接口调整，时间戳修复
+    5. 其他代码优化和已知bug修复
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.20
+    2.Femto：V1.6.6
+    3.Femto-W：V1.0.6
+    4.Femto-Live：V1.1.1
+    5.Astra2：V2.2.05
+
+===================================================
+版本号： v1.2.5
+发布日期: 20220309
+功能变更：
+    1. C++单元测试完善
+    2. pipeline 增加录制回放功能
+    3. Astra+ depth 11bit支持
+    4. SensorControl Sample需求更新适配
+    5. 其他代码优化和已知bug修复
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.20
+    2.Femto：V1.6.4
+    3.Femto-W：V1.0.6
+    4.Femto-Live：V1.1.1
+    5.Astra2：V2.2.05
+
+===================================================
+版本号： v1.2.4
+发布日期: 20220226
+功能变更：
+    1. 控制命令条目、权限梳理，完成控制命令映射关系，不同设备对外命令id统一
+    2. 增加录制和回放功能
+    3. 开流失败重试功能仅保留Astra+设备的支持
+    4. Femto增加设备工作模式设置接口
+    5. Femto-Live增加设备RGB自定义裁剪接口
+    4. 已知bug修复
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.20
+    2.Femto：V1.6.4
+    3.Femto-W：V1.0.6
+    4.Femto-Live：V1.1.1
+    5.Astra2：V2.2.05
+
+===================================================
+版本号： v1.2.3
+发布日期: 20220216
+功能变更：
+    1. FrameProcessor增加property读写接口
+    2. SDK类Property功能实现
+    3. 其他问题修复
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.20
+    2.Femto：V1.5.0
+    3.Femto-W：V1.0.2
+    4.Femto-LIVE：V0.0.1
+    5.Astra2：V2.2.05
+
+===================================================
+版本号： v1.2.2
+发布日期: 20220210
+功能变更：
+    1. FrameAggregator模块更新
+    2. API去除Sensor的Property相关接口
+    3. Sensor懒加载实现:不独占
+    4. 控制命令与Sensor开流过程互斥
+    5. PropertyID命名简化
+    6. D2C后深度有效区域获取功能
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.20
+    2.Femto：V1.5.0
+    3.Femto-W：V1.0.2
+    4.Femto-LIVE：V0.0.1
+    5.Astra2：V2.2.05
+
+===================================================
+版本号： v1.2.1
+发布日期: 20220114
+功能变更：
+    1.优化对外API接口。
+    2.优化设备上下线的检测逻辑
+    3.增加RGB888格式
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.19
+    2.Femto：V1.5.0
+    3.Femto-W：V1.0.2
+    4.Femto-LIVE：V0.0.1
+    5.Astra2：V2.2.05
+
+===================================================
+版本号： v1.1.6
+发布日期: 20211202
+功能变更：
+ 1. 解决Version里major和minor冲突的问题
+ 2. 增加SaveToDisk sample中使用RGB to BGR的功能
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.19
+    2.Femto：V1.5.0
+    3.Femto-W：V1.0.2
+    4.Femto-LIVE：V0.0.1
+    5.Astra2：V2.2.05
+
+===================================================
+版本号： v1.1.5
+发布日期: 20211126
+功能变更：
+ 1. 解决FormatConvertFilter没有实现setFormatConvertType接口
+ 2. 点云示例的Bug修复
+ 3. SaveToDisk示例增加使用FormatConvertFilter进行转码
+ 4. 对外发布版本的CMake修复
+
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.19
+    2.Femto：V1.5.0
+    3.Femto-W：V1.0.2
+    4.Femto-LIVE：V0.0.1
+    5.Astra2：V2.2.05
+
+ ===================================================
+版本号： v1.1.4
+发布日期: 20211122
+功能变更：
+ 1. 解决IMU在Linux上开关导致的libusb资源异常
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.19
+    2.Femto：V1.5.0
+    3.Femto-W：V1.0.2
+    4.Femto-LIVE：V0.0.1
+    5.Astra2：V2.2.05
+
+===================================================
+版本号： v1.1.3
+发布日期: 20211116
+功能变更：
+ 1. sample bug修复
+ 2. 开放单元测试功能
+ 3. 解决libJpeg与OpenCV冲突问题（符号可见性控制）
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.19
+    2.Femto：V1.5.0
+    3.Femto-W：V1.0.2
+    4.Femto-LIVE：V0.0.1
+    5.Astra2：V2.2.05
+
+===================================================
+版本号： v1.1.2
+功能变更：
+ 1.sample bug修复
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.19
+    2.Femto：V1.5.0
+    3.Femto-W：V1.0.2
+    4.Femto-LIVE：V0.0.1
+    5.Astra2：V2.2.05
+
+===================================================
+版本号： v1.1.1
+功能变更：
+ 1.增加C语言版本热拔插Sample
+ 2.修复各Sample中存在的bug
+ 3.适配登龙剑和龙泉剑PID，增加指示灯和标定模式控制指令
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.19
+    2.Femto：V1.5.0
+    3.Femto-W：V1.0.2
+    4.Femto-LIVE：V0.0.1
+    5.Astra2：V2.2.05
+
+===================================================
+版本号： v1.1.0
+功能变更：
+ 1.默认配置文件功能
+ 2.IMU模块更新重构
+ 3.完善 Mirror/Flip 控制命令
+ 4.其他功能优化
+
+支持硬件及固件版本：
+    1.Astra+、Astra+s：V1.0.19
+    2.Femto：V1.5.0
+    3.Astra2：V2.2.05
+
+===================================================
+release：v0.9.9
+功能变更：
+  1. SensorList&ProfileList 类封装，相关接口及Sample调整。（*** C++ API变更）
+  2. bug fix
+适配硬件：
+    1.Femto设备
+    2.Astra+设备
+
+===================================================
+release：v0.9.2
+功能变更：
+ 1.SDK完善发布版本目录
+ 2.增加设备Astra+支持
+ 3.增加IMU设备流支持
+固件版本：
+    1.固件版本：>v1.0.14
+适配硬件：
+    1.机器猫设备
+    2.Femto设备
+    3.Astra+设备
+
+===================================================
+release：v0.6.1
+功能变更：
+ 1.SDK支持CI和CD
+ 2.修复sdk的bug
+固件版本：
+    1.固件版本：>v1.0.14
+适配硬件：
+    1.机器猫设备
+
+===================================================
+release: v0.6.0
+功能变更：
+1.适配机器猫设备,满足客户rgb的动态裁剪需求
+2.sdk支持时间戳的同步
+3.完整的性能测试报告
+固件版本：
+   1.固件版本：>v1.0.14
+适配硬件：
+   1.机器猫设备

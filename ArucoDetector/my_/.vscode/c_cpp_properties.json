@@ -1,0 +1,34 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/include/opencv4/",
+                "/usr/include/opencv4/opencv2",
+                "/usr/local/include",
+                "/usr/local/include/sophus",
+                "/usr/include/eigen3/",
+                "/usr/include/gtk-3.0/",
+                "/usr/local/include/ceres/",
+                "/usr/local/include/pangolin",
+                "/usr/local/include/fmt",
+                // "/home/efsz/mh/vslam_ros/vslam",
+                "/opt/ros/noetic/include",
+                "/usr/local/include/g2o",
+                "/usr/local/include/glog",
+                "/usr/local/include/gflags",
+                "/usr/include/eigen3",
+                "/usr/include/suitesparse",
+                "/home/tam/3rdParty/g2o/"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+}

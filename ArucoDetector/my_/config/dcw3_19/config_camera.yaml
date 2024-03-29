@@ -1,0 +1,74 @@
+%YAML:1.0 # need to specify the file type at the top!
+
+cam:
+  enabled: true
+  max_n: 2
+  use_stereo: true
+  muli_mono_feed_union: true
+  stereo_pair: [0, 1]
+  do_calib_ext: true
+  do_calib_int: false
+  do_calib_dt: true
+  n_pts: 200
+  fast: 15
+  grid_x: 8   #8
+  grid_y: 5   #5
+  min_px_dist: 40
+  knn: 0.70
+  downsample: false
+  histogram_method: "NONE" # NONE, HISTOGRAM, CLAHE
+  max_slam: 50
+  max_msckf: 60
+  feat_rep: "GLOBAL_3D"
+  init_cov_dt: 1e-4
+  init_cov_ex_o: 1e-4
+  init_cov_ex_p: 1e-4
+  init_cov_in_k: 1e-1
+  init_cov_in_c: 1e-1
+  init_cov_in_r: 1e-5
+  sigma_px: 1
+  chi2_mult: 1
+  time_analysis: false
+
+cam0:
+  timeoffset: 8.7611067338226305e-03
+  T_robot_cam:
+    - [ 0.005337, -0.509595, 0.860398, 0.427372 ]
+    - [ -0.999944, 0.005165, 0.009261, 0.025731 ]
+    - [ -0.009163, -0.860399, -0.509539, 0.2662 ]
+    - [ 0, 0, 0, 1 ]
+  T_cam_imu: #rotation from IMU to camera, position of IMU in camera
+    - [0.999879, 0.00852363, -0.0129973, -0.000636021]
+    - [-0.00858547, 0.999952, -0.00470918, 0.000582999]
+    - [0.0129565, 0.00482019, 0.999904, -0.00158777]
+    - [0, 0, 0, 1]
+  intrinsics:  [453.82870483398438, 453.7041015625, 636.8572998046875, 403.36190795898438] #fu, fv, cu, cv
+  distortion_coeffs: [0.073515325784683228, -0.010866490192711353, -0.0012698045466095209, -0.00070490647340193391]
+  distortion_model: equidistant
+  resolution: [1280, 800]
+  # topic: "/camera/image"
+  # topic: "/camera/image_left"
+  topic: "/camera/image_sync_ir"
+  use_mask: false
+  mask: "1280*658.png"
+
+cam1:
+  timeoffset: 8.7611067338226305e-03
+  T_cam_imu: #rotation from IMU to camera, position of IMU in camera
+    - [0.999948, 0.00583349, -0.00838305, -0.0599078]
+    - [-0.00585919, 0.999978, -0.00304407, 3.12867e-05]
+    - [0.00836511, 0.00309303, 0.99996, -0.00139771]
+    - [0.0, 0.0, 0.0, 1.0]
+  # cam1 to cam0
+  T_cn_cnm1:
+    - [ 0.999986, 0.00270453, -0.00460628, 0.0592644 ]
+    - [ -0.00271233, 0.999995, -0.00168793, 0.000386863 ]
+    - [ 0.00460169, 0.0017004, 0.999988, 8.55463e-05 ]
+    - [ 0.0, 0.0, 0.0, 1.0 ]
+  intrinsics: [451.3834228515625, 451.324462890625, 613.7071533203125, 396.82003784179688] #fu, fv, cu, cv
+  distortion_coeffs: [0.072434261441230774, -0.0070220972411334515, -0.0042336378246545792, 0.00031584699172526598]
+  distortion_model: equidistant
+  resolution: [1280, 800]
+  topic: "/camera/image_right"
+  use_mask: false
+  mask: "1280*658.png"

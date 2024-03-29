@@ -1,0 +1,26 @@
+查看x3m cpu指令
+sudo cat /sys/bus/cpu/devices/cpu0/cpufreq/cpuinfo_cur_freq
+
+修改X3m cpu
+echo 1 > /sys/devices/system/cpu/cpufreq/boost
+echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+
+
+// main.cpp
+#include <iostream>
+#include <string>
+ 
+int main(int argc, char** argv) {
+    if (argc < 3) {
+        std::cerr << "Usage: " << argv[0] << " path_to_file number" << std::endl;
+        return 1;
+    }
+ 
+    std::string path = argv[1];
+    int number = std::stoi(argv[2]);
+ 
+    std::cout << "Path: " << path << std::endl;
+    std::cout << "Number: " << number << std::endl;
+ 
+    return 0;
+}

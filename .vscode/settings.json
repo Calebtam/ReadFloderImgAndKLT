@@ -69,6 +69,11 @@
         "hash_set": "cpp",
         "shared_mutex": "cpp",
         "*.ipp": "cpp",
-        "csignal": "cpp"
+        "csignal": "cpp",
+        "any": "cpp",
+        "future": "cpp",
+        "*.traits": "cpp",
+        "alignedvector3": "cpp",
+        "fft": "cpp"
     }
 }
