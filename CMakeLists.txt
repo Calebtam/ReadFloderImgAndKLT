@@ -104,6 +104,12 @@ target_link_libraries(calExtrinsics ${LIBS})
 add_executable(CheckExtrinsics Extrinsics/Check.cpp)
 target_link_libraries(CheckExtrinsics ${LIBS})
 
+############################# my ####################################
+
+# add_executable(sliding_window my/sliding_window.cpp)
+# target_link_libraries(sliding_window ${LIBS})
+add_executable(operater_test my/operater_test.cpp)
+target_link_libraries(operater_test ${LIBS})
 ###################################################################################
 
 MESSAGE(STATUS "####  ${CMAKE_SOURCE_DIR}" )

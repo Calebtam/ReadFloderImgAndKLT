@@ -74,6 +74,11 @@
         "future": "cpp",
         "*.traits": "cpp",
         "alignedvector3": "cpp",
-        "fft": "cpp"
+        "fft": "cpp",
+        "codecvt": "cpp",
+        "filesystem": "cpp",
+        "slist": "cpp",
+        "valarray": "cpp",
+        "forward_list": "cpp"
     }
 }
