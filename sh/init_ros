@@ -1,0 +1,2 @@
+sudo rm /etc/netplan/*.yaml
+sudo net

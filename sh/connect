@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# 检查参数是否提供
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 <ip_address> $1 <password> $2 "
+    exit 1
+fi
+
+# 从命令行参数获取 IP 地址
+ip="$1"
+username="root"
+# password="123"
+password="$2"
+# command="ls"  # 你要执行的命令
+
+# 执行 SSH 连接并自动输入密码
+
+# expect << END
+# spawn ssh $username@$ip $command
+
+#      expect {
+#          "yes/no" {send "yes\r";exp_continue}
+#          "*assword" {send "$password\r";exp_continue}
+#      }
+#     #  expect eof
+# END
+
+# echo "运行:" ssh ${ip} "cd $address ; mv $2 $2_$time3;mv $1 $2;killall $2"
+# read -r -p "continue? [Y/n] " input
+# case $input in
+#     [yY][eE][sS]|[yY])
+#         echo "Yes"
+#         ;;
+
+#     [nN][oO]|[nN])
+#         echo "No"
+#         exit 1
+#            ;;
+
+#     *)
+# esac
+    # expect "*#" { send "exit\n" }  
+
+expect << END
+set timeout 10
+spawn ssh ${username}@${ip}
+    expect {
+        "yes/no" {send "yes\r";exp_continue}
+        "*assword" {send "$password\n"}
+    }    
+    # expect "*#" { send "useradd hehe\n" } 
+    # expect "*#" { send "touch /tmp/test.txt\n" } 
+expect eof
+interact
+END
+
+# ps

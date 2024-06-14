@@ -1,0 +1,112 @@
+#!/usr/bin/expect
+
+# 检查参数是否完整
+if {[llength $argv] != 1} {
+    puts "Usage: ./script_name.sh <ip_address>"
+    exit 1
+}
+
+# 获取参数
+set ip [lindex $argv 0]
+
+# 根据 IP 地址选择账户和密码
+set username ""
+set password ""
+
+# 判断 IP 地址是否为特定值
+if {[string match "*192.168*" $ip]} {    
+    set username "root"
+    set password "123"
+} elseif {[string match "*10.10*" $ip]} {
+    set username "zhongda"
+    set password "zhongda"
+} else {
+    puts "No matching account for the provided IP address."
+    exit 1
+}
+
+# SSH 连接到远程服务器
+spawn ssh $username@$ip
+
+# 匹配是否要求输入密码
+expect {
+    "*assword:" {
+        # 发送密码
+        send "$password\r"
+        # 等待登录成功
+        expect {
+            "*\$ " {
+                # 登录成功后执行 top 命令
+                send "./docker_start_horizon\r"
+                # 等待 top 命令的输出
+                expect "*\#*"
+
+                send "source 3rd/gcc-ubuntu-9.3.0-add-opencv4.5.4/gcc-ubuntu-9.3.0-2020.03-x86_64-aarch64-linux-gnu/aarch64-x3m-ubuntu-enviroment-setup\r"
+
+                expect "*\#*"
+
+                send "cd Version/0424/markpose1/build/ \r"
+
+                expect "*\#*"
+                
+                send "cmake .. -DBUILD_FOR=X3 \r"
+
+                expect "*build\#*"
+                
+                send "make -j12 \r"
+                # # 保持连接
+                interact
+            }
+            "*\# " {
+                # # 登录成功后执行 top 命令
+                # send "top\r"
+                # # 等待 top 命令的输出
+                # expect "*top - *"
+                # # 退出 top 命令
+                # send "q\r"
+
+                send "ps -aux | grep run_fescue_ros2 \r"
+                send "ls -lh fescue_ws/install/perception_alg/lib/libob_aruco_api.so\r"
+                # 保持连接
+                interact
+            }
+            "*assword:" {
+                puts "Incorrect password."
+                exit 1
+            }
+        }
+    }
+    # 处理其他情况，比如首次 SSH 连接的确认等
+    "(yes/no)?" {
+        send "yes\r"
+        expect "*assword:"
+        send "$password\r"
+        expect {
+            "*\$ " {
+                send "top\r"
+                expect "*top - *"
+                # 等待输入指令界面
+                expect "*\$ "
+                interact
+            }
+            "*assword:" {
+                puts "Incorrect password."
+                exit 1
+            }
+        }
+    }
+    # 如果 SSH 连接出错
+    "Could not resolve hostname*" {
+        puts "Could not resolve hostname: $ip"
+        exit 1
+    }
+    # 如果无法连接到远程服务器
+    "Connection refused" {
+        puts "Connection refused: $ip"
+        exit 1
+    }
+    timeout {
+        puts "Connection timed out: $ip"
+        exit 1
+    }
+}

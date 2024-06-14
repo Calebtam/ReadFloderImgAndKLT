@@ -1,0 +1,17 @@
+#!/bin/bash
+password="123"
+
+# sudo usb_modeswitch -KW -v 0bda -p 1a2b
+expect << END
+set timeout 5
+spawn sudo usb_modeswitch -KW -v 0bda -p 1a2b
+
+     expect {
+         "yes/no" {send "yes\r";exp_continue}
+         "*assword" {send "$password\n"}
+     }
+     expect eof
+interact
+# expect -re \".*#\"  # 匹配命令提示符
+# send \"\"
+#END
