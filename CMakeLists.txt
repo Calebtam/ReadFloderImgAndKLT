@@ -29,7 +29,7 @@ if (NOT OpenCV_FOUND)
 endif ()
 # find_package(Boost REQUIRED COMPONENTS system filesystem thread date_time regex)
 find_package(Boost REQUIRED)
-find_package(Ceres REQUIRED)
+# find_package(Ceres REQUIRED)
 
 find_package(Sophus REQUIRED)
 find_package(Pangolin REQUIRED)
@@ -108,8 +108,13 @@ target_link_libraries(CheckExtrinsics ${LIBS})
 
 # add_executable(sliding_window my/sliding_window.cpp)
 # target_link_libraries(sliding_window ${LIBS})
-add_executable(operater_test my/operater_test.cpp)
-target_link_libraries(operater_test ${LIBS})
+# add_executable(operater_test my/operater_test.cpp)
+# target_link_libraries(operater_test ${LIBS})
+
+
+############################# cov ####################################
+add_executable(cov_test Cov/a.cpp)
+target_link_libraries(cov_test ${LIBS})
 ###################################################################################
 
 MESSAGE(STATUS "####  ${CMAKE_SOURCE_DIR}" )
@@ -151,6 +156,6 @@ MESSAGE(STATUS "####  ${CMAKE_SOURCE_DIR}" )
 add_subdirectory(OpticalFlowTest)
 add_subdirectory(ImageQualityTest)
 add_subdirectory(RosBagReadTest)
-add_subdirectory(Sophus)
+# add_subdirectory(Sophus)
 add_subdirectory(EigenTest)
 add_subdirectory(STL)
