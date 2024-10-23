@@ -29,7 +29,7 @@ if (NOT OpenCV_FOUND)
 endif ()
 # find_package(Boost REQUIRED COMPONENTS system filesystem thread date_time regex)
 find_package(Boost REQUIRED)
-# find_package(Ceres REQUIRED)
+find_package(Ceres REQUIRED)
 
 find_package(Sophus REQUIRED)
 find_package(Pangolin REQUIRED)
@@ -60,6 +60,7 @@ include_directories(
         ${Pangolin_INCLUDE_DIRS}
         # ${catkin_INCLUDE_DIRS}
         ${Boost_INCLUDE_DIRS}
+        geometrics
 )
 
 set(ROSBAG_DIR ${CMAKE_SOURCE_DIR}/third_3_party/rosbag)
@@ -83,6 +84,7 @@ set(LIBS
    ${Sophus_LIBS}
    ${Boost_LIBRARIES}
    fmt
+   ${CERES_LIBRARIES}
 )
 
 add_subdirectory(third_3_party)
@@ -159,3 +161,6 @@ add_subdirectory(RosBagReadTest)
 # add_subdirectory(Sophus)
 add_subdirectory(EigenTest)
 add_subdirectory(STL)
+add_subdirectory(Camera)
+add_subdirectory(Ceres)
+add_subdirectory(geometrics)

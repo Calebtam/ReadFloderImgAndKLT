@@ -16,3 +16,6 @@ target_link_libraries(sliceAndIndex ${LIBS})
 
 add_executable(mm MM.cpp)
 target_link_libraries(mm ${LIBS})
+
+add_executable(alignedbox Geometry_alignedbox.cpp)
+target_link_libraries(alignedbox ${LIBS})
