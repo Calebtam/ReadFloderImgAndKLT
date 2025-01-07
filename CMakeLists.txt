@@ -115,8 +115,10 @@ target_link_libraries(CheckExtrinsics ${LIBS})
 
 
 ############################# cov ####################################
-add_executable(cov_test Cov/a.cpp)
-target_link_libraries(cov_test ${LIBS})
+add_executable(cov_test_a Cov/a.cpp)
+target_link_libraries(cov_test_a ${LIBS})
+add_executable(cov_test_b Cov/b.cpp)
+target_link_libraries(cov_test_b ${LIBS})
 ###################################################################################
 
 MESSAGE(STATUS "####  ${CMAKE_SOURCE_DIR}" )
