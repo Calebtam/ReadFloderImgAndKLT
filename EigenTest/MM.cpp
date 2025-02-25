@@ -33,5 +33,18 @@ int main()
     std::cout << "B.block(2, 0, 2, 4) =" << std::endl << B.block(2, 0, 2, 4) << std::endl;
     std::cout << "C =" << std::endl << C << std::endl;
 
+
+    std::cout << " ======================================== " << std::endl;
+
+    Eigen::Matrix<double, 2, 1> obs = Eigen::MatrixXd::Zero(2, 1);
+    Eigen::Vector2d observation = Eigen::Vector2d::Zero();
+    std::cout << "observation =" << std::endl << observation << std::endl;
+
+    observation << 1, 2;
+    obs = observation;
+    // obs += observation;
+    std::cout << "obs =" << std::endl << obs << std::endl;
+    std::cout << "observation =" << std::endl << observation << std::endl;
+
     return 0;
 }
