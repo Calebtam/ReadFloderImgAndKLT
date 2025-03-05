@@ -65,6 +65,7 @@ public:
                   << imu_data.angular_velocity(1) << ", " 
                   << imu_data.angular_velocity(2) << "]" << std::endl;
     }
+    virtual void print_for_b(){};
 };
 
 // 一代子类：OdometryEstimationIMU，扩展了基类的 insert_imu 方法
@@ -75,11 +76,22 @@ public:
         OdometryEstimationCallbacks::on_insert_imu(imu_data.timestamp, imu_data.linear_acceleration, imu_data.angular_velocity);
         std::cout << "一代子类 IMU Data received: Timestamp = " << imu_data.timestamp << std::endl;
     }
+    virtual int print_for_c(){};
+
+    virtual void print_for_b() override{
+        std::cout << "一代子类 print_for_b" << std::endl;
+        if(print_for_c())
+            std::cout << "一代子类 调用printc " << std::endl;
+    }
 };
 
 // 二代子类
 class OdometryEstimationCPU : public OdometryEstimationIMU {
 
+    virtual int print_for_c() {
+        std::cout << "二代子类 print_for_c" << std::endl;
+        return 1;
+    }
 };
 
 int main() {
@@ -104,6 +116,8 @@ int main() {
     odometry_estimation->insert_imu(imu_data);
     std::cout << std::endl;
     odometry_estimation->OdometryEstimationBase::insert_imu(imu_data);
+
+    odometry_estimation->print_for_b();
 
     return 0;
 }
