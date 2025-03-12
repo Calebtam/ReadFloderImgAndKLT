@@ -58,8 +58,13 @@ bool TriangulatePoint(const std::shared_ptr<vo::PinholeCamera4d>& camera,
     decomposition*/
     // 线性方程求解
     // Eigen::Vector4d x;
-    Eigen::JacobiSVD<Eigen::Matrix4d> svd(A, Eigen::ComputeFullV);
-    // Eigen::JacobiSVD<Eigen::MatrixXd> svd(A, Eigen::ComputeFullV);
+    // 使用了 Eigen::JacobiSVD<Eigen::Matrix4d> 来对矩阵 A 进行 SVD 分解，但 A 实际上是一个 动态大小的矩阵（Eigen::MatrixXd），而 Eigen::Matrix4d 是 固定大小的 4×4 矩阵。
+    // test: /usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:281: void Eigen::PlainObjectBase<Derived>::resize(Eigen::Index, Eigen::Index) [with Derived = Eigen::Matrix<double, 4, 4>; Eigen::Index = long int]: Assertion `(!(RowsAtCompileTime!=Dynamic) || (rows==RowsAtCompileTime)) && (!(ColsAtCompileTime!=Dynamic) || (cols==ColsAtCompileTime)) && (!(RowsAtCompileTime==Dynamic && MaxRowsAtCompileTime!=Dynamic) || (rows<=MaxRowsAtCompileTime)) && (!(ColsAtCompileTime==Dynamic && MaxColsAtCompileTime!=Dynamic) || (cols<=MaxColsAtCompileTime)) && rows>=0 && cols>=0 && "Invalid sizes when resizing a matrix or array."' failed.
+    // Eigen::JacobiSVD<Eigen::Matrix4d> svd(A, Eigen::ComputeFullV);
+
+
+    
+    Eigen::JacobiSVD<Eigen::MatrixXd> svd(A, Eigen::ComputeFullV);
 
     // Eigen::JacobiSVD<Eigen::MatrixXd> svd(A, Eigen::ComputeThinU | Eigen::ComputeThinV);
     // // auto x = svd.matrixV().col(A.cols() - 1);
@@ -204,161 +209,4 @@ bool TriangulatePointWithCovariance(
          0, 0, 1;
     covariance = J * Eigen::Matrix3d(cov_pixel.array().pow(2).matrix().asDiagonal()) * J.transpose();
     return res; 
-}
-
-int main() {
-    std::cout << "Hello World!\n" << std::endl;
-    
-    if(1)
-    {
-        // template<typename Scalar>
-        // using Position = Eigen::Matrix<Scalar, 3, 1>;
-        Eigen::MatrixXd A1(6, 4), A2(6, 4), A3(6, 4);
-        // 第一个矩阵数据
-        A1 << 1.00000,  0.00000, -0.84160,  0.79233,
-            -0.00000, 1.00000, -0.13897,  0.31031,
-            1.00000, -0.00000, -0.76898, 0.47162,
-            0.00000, 1.00000, -0.14434, 0.32159,
-            1.00000, -0.00000, -0.68919, 0.11845,
-            0.00000, 1.00000, -0.14588, 0.32482;
-
-        Eigen::Matrix4d A1_sub = A1.block<4, 4>(0, 0);
-        std::cout << "A1:\n" << A1.jacobiSvd(Eigen::ComputeThinU | Eigen::ComputeThinV).matrixV().rightCols<1>().hnormalized().transpose() << std::endl;
-        std::cout << "A1_sub:\n" << A1_sub.jacobiSvd(Eigen::ComputeFullV).matrixV().rightCols<1>().hnormalized().transpose() << std::endl;
-
-        // 第二个矩阵数据
-        A2 << 1.00000,  0.00000, -0.84160,  0.81054,
-            0.00000,  1.00000, -0.13897,  0.31031,
-            1.00000, -0.00000, -0.76898,  0.47157,
-            0.00000,  1.00000, -0.14434,  0.32159,
-            1.00000, -0.00000, -0.68919,  0.11840,
-            0.00000,  1.00000, -0.14588,  0.32482;
-        Eigen::Matrix4d A2_sub = A2.block<4, 4>(0, 0);
-        std::cout << "A2:\n" << A2.jacobiSvd(Eigen::ComputeThinU | Eigen::ComputeThinV).matrixV().rightCols<1>().hnormalized().transpose() << std::endl;
-        std::cout << "A2_sub:\n" << A2_sub.jacobiSvd(Eigen::ComputeFullV).matrixV().rightCols<1>().hnormalized().transpose() << std::endl;
-
-        // // 第三个矩阵数据
-        // A3 << 1.00000,  0.00000, -0.84160,  0.81054,
-        //     0.00000,  1.00000, -0.13897,  0.31031,
-        //     1.00000, -0.00000, -0.76898,  0.47157,
-        //     0.00000,  1.00000, -0.14434,  0.32159,
-        //     1.00000, -0.00000, -0.68919,  0.11840,
-        //     0.00000,  1.00000, -0.14588,  0.32482;
-        // Eigen::Matrix4d A3_sub = A3.block<4, 4>(0, 0);
-        // std::cout << "A3:\n" << A3.jacobiSvd(Eigen::ComputeThinU | Eigen::ComputeThinV).matrixV().rightCols<1>().hnormalized().transpose() << std::endl;
-        // std::cout << "A3_sub:\n" << A3_sub.jacobiSvd(Eigen::ComputeFullV).matrixV().rightCols<1>().hnormalized().transpose() << std::endl;
-        A3 << 1.00000, -0.00000,  0.06657, -0.74021,
-            0.00000,  1.00000,  0.60829,  1.27741,
-            1.00000, -0.00000,  0.08883, -0.73423,
-            0.00000,  1.00000,  0.60718,  1.27509,
-            1.00000, -0.00000,  0.18634, -1.49486,
-            0.00000,  1.00000,  0.60080, -1.26167;
-        Eigen::Matrix4d A3_sub = A3.block<4, 4>(0, 0);
-        std::cout << "A3:\n" << A3.jacobiSvd(Eigen::ComputeThinU | Eigen::ComputeThinV).matrixV().rightCols<1>().hnormalized().transpose() << std::endl;
-        std::cout << "A3_sub:\n" << A3_sub.jacobiSvd(Eigen::ComputeFullV).matrixV().rightCols<1>().hnormalized().transpose() << std::endl;
-    }
-
-    if(0)
-    {
-        // Observations for each landmark from multiple camera poses
-        // 无畸变的像素平面
-        std::vector<std::vector<Eigen::Vector2d>> observations = {
-            {Eigen::Vector2d(535.79298,954.53189), 
-            Eigen::Vector2d(579.50468,951.29612), 
-            Eigen::Vector2d(627.53174,950.37062)},
-
-            {Eigen::Vector2d(531.41897,895.03735), 
-            Eigen::Vector2d(577.25681,892.25756), 
-            Eigen::Vector2d(624.12050,888.89212)},
-
-            {Eigen::Vector2d(531.41897,895.03735), 
-            Eigen::Vector2d(577.25681,894.25756), 
-            Eigen::Vector2d(624.12050,893.89212)}
-            // {Eigen::Vector2d(300, 350), Eigen::Vector2d(298, 348), Eigen::Vector2d(302, 351)}
-        };
-        std::cout << "observations: " << std::endl;
-        // Multiple camera extrinsics (poses)
-        std::vector<std::vector<Eigen::Matrix4d>> extrinsics = {
-            {
-                (Eigen::Matrix4d() <<  -1.00000,  0.00000,  0.00000,  0.95682,
-                                        0.00000, -1.00000,  0.00000, -0.01848,
-                                        0.00000,  0.00000,  1.00000,  2.10000,
-                                        0.00000,  0.00000,  0.00000,  1.00000).finished().inverse(),
-                // 1.14329−0.95682 = 0.18647
-                (Eigen::Matrix4d() <<  -1.00000,  0.00000,  0.00000,  1.14329,
-                                        0.00000, -1.00000,  0.00000, -0.01848,
-                                        0.00000,  0.00000,  1.00000,  2.10000,
-                                        0.00000,  0.00000,  0.00000,  1.00000).finished().inverse(),
-                // 1.32891−1.14329 = 0.18562
-                (Eigen::Matrix4d() <<  -1.00000,  0.00000,  0.00000,  1.32891,
-                                        0.00000, -1.00000,  0.00000, -0.01848,
-                                        0.00000,  0.00000,  1.00000,  2.10000,
-                                        0.00000,  0.00000,  0.00000,  1.00000).finished().inverse(),
-            },
-            {
-                (Eigen::Matrix4d() <<  -1.00000,  0.00000,  0.00000,  2.02719,
-                                        0.00000, -1.00000,  0.00000, -0.01848,
-                                        0.00000,  0.00000,  1.00000,  2.10000,
-                                        0.00000,  0.00000,  0.00000,  1.00000).finished().inverse(),
-                // 2.19844 - 2.02719 = 0.17125
-                (Eigen::Matrix4d() <<  -1.00000,  0.00000,  0.00000,  2.19844,
-                                        0.00000, -1.00000,  0.00000, -0.01848,
-                                        0.00000,  0.00000,  1.00000,  2.10000,
-                                        0.00000,  0.00000,  0.00000,  1.00000).finished().inverse(),
-                // 2.38907 - 2.19844 = 0.19063
-                (Eigen::Matrix4d() <<  -1.00000,  0.00000,  0.00000,  2.38907,
-                                        0.00000, -1.00000,  0.00000, -0.01848,
-                                        0.00000,  0.00000,  1.00000,  2.10000,
-                                        0.00000,  0.00000,  0.00000,  1.00000).finished().inverse(),
-            },
-            {
-                (Eigen::Matrix4d() <<  -1.00000,  0.00000,  0.00000,  2.02719,
-                                        0.00000, -1.00000,  0.00000, -0.01848,
-                                        0.00000,  0.00000,  1.00000,  2.10000,
-                                        0.00000,  0.00000,  0.00000,  1.00000).finished().inverse(),
-                // 2.02719 + 0.185 = 2.21219
-                (Eigen::Matrix4d() <<  -1.00000,  0.00000,  0.00000,  2.21219,
-                                        0.00000, -1.00000,  0.00000, -0.01848,
-                                        0.00000,  0.00000,  1.00000,  2.10000,
-                                        0.00000,  0.00000,  0.00000,  1.00000).finished().inverse(),
-                // 2.21219 + 0.185 = 2.39719
-                (Eigen::Matrix4d() <<  -1.00000,  0.00000,  0.00000,  2.39719,
-                                        0.00000, -1.00000,  0.00000, -0.01848,
-                                        0.00000,  0.00000,  1.00000,  2.10000,
-                                        0.00000,  0.00000,  0.00000,  1.00000).finished().inverse(),
-            }
-        };
-        std::cout << "Camera poses: " << std::endl;
-        // Camera intrinsics (assumed identical for all cameras)
-        // k1, k2, k3, k4, p1, p2, sx1, sy1, fx, fy, cx, cy
-        // double fisheye_camera_params_[12] = {3.05418428e-02, -3.56408791e-03, -1.80240031e-02, 6.03048922e-03, 
-        //         0.0, 0.0, 0.0, 0.0, 5.99024902e+02, 5.99141663e+02, 4.94848450e+02, 5.03196930e+02};
-        double params_[12] = {3.16444859e-02, -7.04552373e-03, -1.41365882e-02, 4.73309727e-03, 0.0, 0.0, 0.0, 0.0, 6.01948425e+02, 6.02096313e+02, 5.09349335e+02, 5.07302551e+02};
-        vo::CameraPtr camera_ = std::make_shared<vo::ThinPrismFisheyeCamera12d>(992, 992, params_);
-        std::cout << "Camera intrinsics: " << std::endl;
-        Eigen::Matrix3d intrinsic;
-        intrinsic << params_[8],           0,          params_[10],
-                    0,           params_[9],          params_[11],
-                    0,                    0,                    1;
-
-        std::shared_ptr<vo::PinholeCamera4d> camera_undistorted_;
-        vo::DecideForUndistortedCamera(camera_, camera_undistorted_, false);
-        std::cout << "Undistorted camera intrinsics: " << std::endl;
-        // //fx, fy, cx, cy
-        // double undistorted_initial_intrinsics[4] = {6.01948425e+02, 6.02096313e+02, 5.09349335e+02, 5.07302551e+02};
-        // camera_undistorted = std::make_shared<vo::PinholeCamera4d>(992, 992, undistorted_initial_intrinsics);
-
-        Eigen::Vector3d point_3d;
-        std::vector<Eigen::Vector2d> pixels;
-        std::vector<Eigen::Matrix4d> T_cam_world;
-        std::cout << "Camera extrinsics: " << std::endl;
-        TriangulatePoint(camera_undistorted_, extrinsics.at(0), observations.at(0), point_3d, 0.2, 3.0, 5, 1.5);
-        TriangulatePoint(camera_undistorted_, extrinsics.at(1), observations.at(1), point_3d, 0.2, 3.0, 5, 1.5);
-        TriangulatePoint(camera_undistorted_, extrinsics.at(1), observations.at(2), point_3d, 0.2, 3.0, 5, 1.5);
-        TriangulatePoint(camera_undistorted_, extrinsics.at(2), observations.at(1), point_3d, 0.2, 3.0, 5, 1.5);
-        TriangulatePoint(camera_undistorted_, extrinsics.at(2), observations.at(2), point_3d, 0.2, 3.0, 5, 1.5);
-
-    }
-
-    return 0;
 }

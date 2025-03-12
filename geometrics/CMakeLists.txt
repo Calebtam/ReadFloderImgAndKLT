@@ -1,3 +1,3 @@
-add_executable(geometrics geometrics.cpp undistortion.cpp)
-target_link_libraries(geometrics ${LIBS})
+add_executable(test test.cpp geometrics.cpp undistortion.cpp)
+target_link_libraries(test ${LIBS})
 
