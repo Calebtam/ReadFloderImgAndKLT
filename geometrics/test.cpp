@@ -21,6 +21,10 @@ int main() {
 
     std::shared_ptr<vo::PinholeCamera4d> camera_undistorted_;
     vo::DecideForUndistortedCamera(camera_, camera_undistorted_, false);
+    Eigen::Matrix3d camera_undistorted_intrinsic;
+    camera_undistorted_intrinsic << 601.948425,           0,          1042.391255,
+                                    0,           602.096313,          1038.202480,
+                                    0,                    0,                    1;
     std::cout << "Undistorted camera intrinsics: " << std::endl;
     // //fx, fy, cx, cy
     // double undistorted_initial_intrinsics[4] = {6.01948425e+02, 6.02096313e+02, 5.09349335e+02, 5.07302551e+02};
