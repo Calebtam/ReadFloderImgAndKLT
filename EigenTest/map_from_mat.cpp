@@ -17,6 +17,13 @@ int main() {
     // 使用 Eigen::Map 来将 cv::Mat 映射为 Eigen 矩阵（RowMajor 表示行主序布局）
     Eigen::Map<Eigen::Matrix<float, 4, 4, Eigen::RowMajor>> T_gtsam(T_cv.ptr<float>(), T_cv.rows, T_cv.cols);
 
+
+    cv::Point2f point(1.0f, 2.0f);
+
+    // 使用 Eigen::Map 将 cv::Point2f 映射到 Eigen::Matrix<double, 2, 1>
+    Eigen::Map<Eigen::Matrix<double, 2, 1>> matrixDistCoeffs(reinterpret_cast<double*>(&point), 2);
+
+
     // 输出 Eigen::Matrix 的内容，检查映射是否正确
     std::cout << "Mapped Eigen Matrix (T_gtsam):\n" << T_gtsam << std::endl;
 
