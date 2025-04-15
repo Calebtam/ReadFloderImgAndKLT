@@ -148,7 +148,7 @@ MESSAGE(STATUS "####  ${CMAKE_SOURCE_DIR}" )
 # set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ./)
 ###########################################################################################
 
-add_subdirectory(OpticalFlowTest)
+add_subdirectory(opencv)
 add_subdirectory(ImageQualityTest)
 add_subdirectory(RosBagReadTest)
 # add_subdirectory(Sophus)
