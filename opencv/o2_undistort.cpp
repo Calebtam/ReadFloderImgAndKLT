@@ -7,17 +7,9 @@
 using namespace cv;
 using namespace std;
 
-int main(int argc, char** argv) {
-    // 1. Check arguments
-    if (argc != 3) {
-        std::cerr << "Usage: " << argv[0] << " <image_path>" << std::endl;
-        return -1;
-    }
+cv::Mat cam_K, cam_distCoeffs;
 
-    const std::string image_path = argv[1];  // First argument is image path
-    double param_ = std::stod(argv[2]); // Second argument is size
-    // const std::string output_path = (argc >= 3) ? argv : "undistorted_result.jpg";
-
+void CameraParamConfig(){
     // 2. 读取相机内参和畸变系数（实际项目中建议从配置文件读取）
     double param[12] = {0.033369358628988266, -0.013455653563141823, -0.0049120308831334114, 0.00067755661439150572, 
         0.0, 0.0, 0.0, 0.0, 223.89411926269531, 223.90921020507812, 325.479248046875, 325.74505615234375};
@@ -33,48 +25,27 @@ int main(int argc, char** argv) {
     //                                             0,          0,         1);
     // cv::Mat cam_distCoeffs = (cv::Mat_<double>(4, 1) << param[0], param[1], param[2], param[3]);
 
-    cv::Mat cam_K, cam_distCoeffs;
     cv::eigen2cv(eK, cam_K);
     cv::eigen2cv(edistCoeffs, cam_distCoeffs);
+}
 
-
-    // 3. 读取输入图像
-    cv::Mat input_image = cv::imread(image_path, cv::IMREAD_GRAYSCALE);
-    if (input_image.empty()) {
-        std::cerr << "Error: Could not load image at " << image_path << std::endl;
-        std::cerr << "Supported formats: JPEG, PNG, TIFF, etc." << std::endl;
-        return -1;
+void ShowBalance(cv::Mat& input_image) {
+    for (double balance : {0.0, 0.5, 1.0}) {
+        cv::Mat new_k;
+        cv::fisheye::estimateNewCameraMatrixForUndistortRectify(cam_K, cam_distCoeffs, input_image.size(), cv::Mat(), new_k, balance /*, outputsize*/);
+        cv::Mat map1, map2, undistorted;
+        cv::fisheye::initUndistortRectifyMap(cam_K, cam_distCoeffs, cv::Mat(), new_k, input_image.size(), CV_16SC2, map1, map2);
+        cv::remap(input_image, undistorted, map1, map2, cv::INTER_LINEAR);
+        // cv::imwrite("undistorted_balance_" + std::to_string(balance) + ".png", undistorted);
+        cv::imshow("undistorted_balance_" + std::to_string(balance), undistorted);
     }
+    cv::waitKey(0);
+}
 
-    // 4. 设置输出尺寸（可修改为自定义尺寸）
-    cv::Size new_size = input_image.size(); // 保持原尺寸
-    // cv::Size new_size = cv::Size(input_image.size().width * 2, input_image.size().height * 2); // 可选更大尺寸试试
-    double balance = 0.0; // 平衡参数：0.0最小化黑边，1.0保留最大FOV
-    std::cout << "Balance: " << balance << std::endl;
-
-    // for (double balance : {0.0, 0.5, 1.0}) {
-    //     cv::Mat new_k;
-    //     cv::fisheye::estimateNewCameraMatrixForUndistortRectify(cam_K, cam_distCoeffs, input_image.size(), cv::Mat(), new_k, balance);
-    //     cv::Mat map1, map2, undistorted;
-    //     cv::fisheye::initUndistortRectifyMap(cam_K, cam_distCoeffs, cv::Mat(), new_k, input_image.size(), CV_16SC2, map1, map2);
-    //     cv::remap(input_image, undistorted, map1, map2, cv::INTER_LINEAR);
-    //     // cv::imwrite("undistorted_balance_" + std::to_string(balance) + ".png", undistorted);
-    //     cv::imshow("undistorted_balance_" + std::to_string(balance), undistorted);
-    // }
-    // cv::waitKey(0);
-
-    // const double g_alpha = 1;
-    // int g_centerX = 0;
-    // int g_centerY = 0;
-    // cv::Mat newCameraMatrix = getOptimalNewCameraMatrix(cam_K, cam_distCoeffs, input_image.size(), g_alpha, new_size, 0); // （针孔模型）
-
-    // 5. 计算新相机矩阵
-    cv::Mat new_k;
-    cv::fisheye::estimateNewCameraMatrixForUndistortRectify(cam_K, cam_distCoeffs, input_image.size(), cv::Mat(), new_k, balance, new_size);
-    // cv::fisheye::estimateNewCameraMatrixForUndistortRectify(cam_K, cam_distCoeffs, input_image.size(), cv::Mat(), new_k, balance, new_size, /*fov_scale=*/ param_);
-    
+void ShowScale(cv::Mat& input_image, cv::Mat& new_k, cv::Size new_size) {
+    //  对比不同的scale
     cv::Mat test_k;
-    for (double scale_in : {3.0, 3.5, 3.8, 4.0, 4.2, 4.5, 5.0}) {
+    for (double scale_in : {1.0, 2.0, 2.5, 3.0, 3.5, 3.8, 4.0, 4.2, 4.5, 5.0}) {
         test_k = new_k.clone(); // ⚠️ 一定要 clone，不然 new_k 会被覆盖
         test_k.at<double>(0, 0) *= scale_in; // fx
         test_k.at<double>(1, 1) *= scale_in; // fy
@@ -92,18 +63,116 @@ int main(int argc, char** argv) {
         cv::circle(undistorted_in, cv::Point(new_size.width / 2, new_size.height / 2), 2, cv::Scalar(255), -1);
         cv::imshow("Undistorted (scale=" + std::to_string(scale_in) + ")", undistorted_in);
     }
-    // cv::waitKey(0);
+    cv::waitKey(0);
+}
 
+void ShowInter(cv::Mat& input_image, cv::Mat& map1_in, cv::Mat& map2_in, cv::Size new_size) {
+    // enum InterpolationFlags{
+    //     /** nearest neighbor interpolation */
+    //     INTER_NEAREST        = 0,
+    //     /** bilinear interpolation */
+    //     INTER_LINEAR         = 1,
+    //     /** bicubic interpolation */
+    //     INTER_CUBIC          = 2,
+    //     /** resampling using pixel area relation. It may be a preferred method for image decimation, as
+    //     it gives moire'-free results. But when the image is zoomed, it is similar to the INTER_NEAREST
+    //     method. */
+    //     INTER_AREA           = 3,
+    //     /** Lanczos interpolation over 8x8 neighborhood */
+    //     INTER_LANCZOS4       = 4,
+    //     /** Bit exact bilinear interpolation */
+    //     INTER_LINEAR_EXACT = 5,
+    //     /** mask for interpolation codes */
+    //     INTER_MAX            = 7,
+    //     /** flag, fills all of the destination image pixels. If some of them correspond to outliers in the
+    //     source image, they are set to zero */
+    //     WARP_FILL_OUTLIERS   = 8,
+    //     /** flag, inverse transformation
+    
+    //     For example, #linearPolar or #logPolar transforms:
+    //     - flag is __not__ set: \f$dst( \rho , \phi ) = src(x,y)\f$
+    //     - flag is set: \f$dst(x,y) = src( \rho , \phi )\f$
+    //     */
+    //     WARP_INVERSE_MAP     = 16
+    // };
 
+    std::vector<std::pair<int, std::string>> interpolation_modes = {
+        {cv::INTER_NEAREST,  "INTER_NEAREST"},
+        {cv::INTER_LINEAR,   "INTER_LINEAR"},
+        {cv::INTER_CUBIC,    "INTER_CUBIC"},
+        {cv::INTER_AREA,     "INTER_AREA"},
+        {cv::INTER_LANCZOS4, "INTER_LANCZOS4"},
+        // {cv::INTER_MAX,      "INTER_MAX"},
+        // {cv::WARP_FILL_OUTLIERS, "WARP_FILL_OUTLIERS"},
+        // {cv::WARP_INVERSE_MAP,   "WARP_INVERSE_MAP"}
+    };
 
-    // // 手动缩放焦距（0.9 表示再收紧 10%） 我用的较好的参数是4
-    // double scale = param_;
-    // new_k.at<double>(0, 0) *= scale; // fx
-    // new_k.at<double>(1, 1) *= scale; // fy
-    // // 或者你也可以尝试下面这种方式让它回到图像中心：
-    // new_k.at<double>(0, 2) = new_size.width / 2.0;
-    // new_k.at<double>(1, 2) = new_size.height / 2.0;
+    //  对比不同的scale
+    cv::Mat test_k;
+    // for (int interpolation, string str : 
+    //     {{cv::INTER_NEAREST, "INTER_NEAREST"}, {cv::INTER_LINEAR, "INTER_LINEAR"}, {cv::INTER_CUBIC, "INTER_CUBIC"}, {cv::INTER_LANCZOS4, "INTER_LANCZOS4"}}) {
+    for (const auto& mode : interpolation_modes) {
+        int interpolation = mode.first;
+        const std::string& name = mode.second;
+    
+        // 初始化映射表并去畸变
+        cv::Mat undistorted_in;
+        cv::remap(input_image, undistorted_in, map1_in, map2_in, interpolation);
 
+        // 可视化：画图像中心点
+        cv::circle(undistorted_in, cv::Point(new_size.width / 2, new_size.height / 2), 2, cv::Scalar(255), -1);
+        cv::imshow("interpolation_modes (" + name + ")", undistorted_in);
+    }
+    cv::waitKey(0);
+   
+}
+
+int main(int argc, char** argv) {
+    // 1. Check arguments
+    if (argc != 3) {
+        std::cerr << "Usage: " << argv[0] << " <image_path>" << std::endl;
+        return -1;
+    }
+    const std::string image_path = argv[1];  // First argument is image path
+    double param_ = std::stod(argv[2]); // Second argument is size
+
+    // 2. 读取相机内参和畸变系数（实际项目中建议从配置文件读取）
+    CameraParamConfig();
+
+    // 3. 读取输入图像
+    cv::Mat input_image = cv::imread(image_path, cv::IMREAD_GRAYSCALE);
+    if (input_image.empty()) {
+        std::cerr << "Error: Could not load image at " << image_path << std::endl;
+        std::cerr << "Supported formats: JPEG, PNG, TIFF, etc." << std::endl;
+        return -1;
+    }
+
+    // 4. 设置输出尺寸（可修改为自定义尺寸）
+    // cv::Size new_size = input_image.size(); // 保持原尺寸
+    // cv::Size new_size = cv::Size(input_image.size().width * 2, input_image.size().height * 2); // 可选更大尺寸试试
+    cv::Size new_size = cv::Size(1024, 1024); // superpoint的输入尺寸
+
+    if(0)
+        ShowBalance(input_image);
+
+    // 5. 计算新相机矩阵
+    // cv::Mat newCameraMatrix = getOptimalNewCameraMatrix(cam_K, cam_distCoeffs, input_image.size(), g_alpha, new_size, 0); // （针孔模型）
+    cv::Mat new_k;
+    double balance = 0.0; // 平衡参数：0.0最小化黑边，1.0保留最大FOV
+    std::cout << "Balance: " << balance << std::endl;
+    cv::fisheye::estimateNewCameraMatrixForUndistortRectify(cam_K, cam_distCoeffs, input_image.size(), cv::Mat(), new_k, balance, new_size);
+    // cv::fisheye::estimateNewCameraMatrixForUndistortRectify(cam_K, cam_distCoeffs, input_image.size(), cv::Mat(), new_k, balance, new_size, /*fov_scale=*/ param_);
+    
+    if(0)
+        ShowScale(input_image, new_k, new_size);
+
+    // 手动缩放焦距（0.9 表示再收紧 10%） 我用的较好的参数是4
+    double scale = param_;
+    new_k.at<double>(0, 0) *= scale; // fx
+    new_k.at<double>(1, 1) *= scale; // fy
+    // 或者你也可以尝试下面这种方式让它回到图像中心：
+    new_k.at<double>(0, 2) = new_size.width / 2.0;
+    new_k.at<double>(1, 2) = new_size.height / 2.0;
     // // 修复：同步缩放光心或设定居中
     // new_k.at<double>(0, 2) *= scale; // cx
     // new_k.at<double>(1, 2) *= scale; // cy
@@ -118,10 +187,14 @@ int main(int argc, char** argv) {
     cv::fisheye::initUndistortRectifyMap(cam_K, cam_distCoeffs, cv::Mat(), cam_K, input_image.size(), CV_16SC2, UndistortRectifyMap1, UndistortRectifyMap2);
 
 
+    if(0)
+        ShowInter(input_image, map1, map2, new_size);
+
     // 7. 应用去畸变
     cv::Mat undistorted_image, undistorted_image2;
     cv::remap(input_image, undistorted_image, map1, map2, cv::INTER_LINEAR, cv::BORDER_CONSTANT);
     cv::remap(input_image, undistorted_image2, UndistortRectifyMap1, UndistortRectifyMap2, cv::INTER_LINEAR);
+
 
     // // 8. 保存并显示结果
     // if (!cv::imwrite(output_path, undistorted_image)) {
