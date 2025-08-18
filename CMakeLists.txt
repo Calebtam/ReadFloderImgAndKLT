@@ -105,11 +105,7 @@ target_link_libraries(d ${LIBS})
 # target_link_libraries(operater_test ${LIBS})
 
 
-############################# cov ####################################
-add_executable(cov_test_a Cov/a.cpp)
-target_link_libraries(cov_test_a ${LIBS})
-add_executable(cov_test_b Cov/b.cpp)
-target_link_libraries(cov_test_b ${LIBS})
+
 ###################################################################################
 
 MESSAGE(STATUS "####  ${CMAKE_SOURCE_DIR}" )
@@ -160,3 +156,4 @@ add_subdirectory(geometrics)
 add_subdirectory(glim)
 add_subdirectory(Extrinsics)
 add_subdirectory(message)
+add_subdirectory(Cov)
